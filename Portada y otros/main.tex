@@ -4,16 +4,22 @@
 \usepackage[spanish]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-\usepackage{hyperref}
 \usepackage{float}
 %Fuente arial
 \usepackage{helvet}
 \renewcommand{\familydefault}{\sfdefault}
 
+%Hipervinculos y citas
+\usepackage{csquotes}
+\usepackage[backend=biber, style=apa, sortlocale=es]{biblatex} % <-- CORREGIDO
+\usepackage{hyperref} % <-- CORREGIDO: estaba mal escrito como 'hyperrref'
+\usepackage{url}
 %Graficos y color
 \usepackage{graphicx} % Required for inserting images
 \usepackage{xcolor}
 \usepackage{tikz}
+\usetikzlibrary{positioning}
+
 
 %Margenes y espacio
 \usepackage[a4paper, left = 2cm, right = 1cm, top=2cm,bottom=2cm]{geometry}
@@ -27,7 +33,10 @@
 \color{black} %Cambia el color del texto
 
 
+%Bibilografia
+\addbibresource{referencias.bib}
 \begin{document}
+
 
 % PORTADA
 \begin{titlepage}
@@ -52,7 +61,8 @@
 % RESUMEN
 \newpage
 \thispagestyle{empty}
-{\large \textbf{Resumen}} \\[5pt]
+{\large \textbf{Resumen}}
+\vspace{5pt}
 
 En este trabajo se realiza la investigacion acerca de las redes neuronales de grafos (GNNs) donde se abordara la importancia, sus conceptos más importantes y como nosotros en el curso de estrucutras discretas podemos implementarlo con nuestro conocimiento adquirido en esta investigacion. Se van a desarrollar diferentes ejemplos en python, donde utilizaremos bibliotecas especializadas para implementar un GCN basico, este con el objetivo de poder ver la clasificacion de nodos en un grafo y se complementará con analisis empiricos. Además de esto, los estudiantes se dan de aprovechamiento las herramientas recomendadas por el profesor las cuales son: Github(Repositorio de pruebas), Overleaf(Documentacion) y el uso de editor de texto y compilador para crear las pruebas de GCNs en python. Este trabajo busca que el lector consiga una mejor comprension al mundo de las redes neuronales de grafos por medio de la introduccion en el documento y viendo las pruebas que se harán sobre esta. %Si quieren agregan más cosas
 
@@ -60,35 +70,43 @@ En este trabajo se realiza la investigacion acerca de las redes neuronales de gr
 
 \newpage
 \thispagestyle{empty}
-{\large \textbf{Palabras claves}} \\[5pt]
+{\large \textbf{Palabras claves}}
+\vspace{5pt}
 \newpage
 \thispagestyle{empty}
-{\large \textbf{Índice}} \\[5pt]
+{\large \textbf{Índice}}
+\vspace{5pt}
 
 \newpage
 \thispagestyle{empty}
-{\large \textbf{Índice de Tablas y Figuras}} \\[5pt]
+{\large \textbf{Índice de Tablas y Figuras}}
+\vspace{5pt}
 
 \newpage
 \thispagestyle{empty}
-{\large \textbf{Introducción}} \\[5pt]
+{\large \textbf{Introducción}}
+\vspace{5pt}
 parte de garro
 \newpage
 \thispagestyle{empty}
-{\large \textbf{Conceptos de Grafos y sus Aplicaciones}} \\[5pt]
+{\large \textbf{Conceptos de Grafos y sus Aplicaciones}}
+\vspace{5pt}
 parte de garro
 \newpage
 \thispagestyle{empty}
-{\large \textbf{Conceptos Básicos de ML usando Redes Neuronales (NNs)}} \\[10pt]
+{\large \textbf{Conceptos Básicos de ML usando Redes Neuronales (NNs)}} \vspace{10pt}
 
-\textbf{a. Nociones de Machine Learning (ML)} \\[5pt]
+\textbf{a.Nociones de Machine Learning (ML)}
+\vspace{5pt}
 
-\textbf{i. Definición} \\[3pt]
+\textbf{i. Definición} 
+\vspace{3pt}
+\\[1pt]
 El \textit{Machine Learning} (ML) es una rama o campo de la inteligencia artificial (IA) que se enfoca en el desarrollo de algoritmos capaces de aprender a partir de datos. En el pasado donde el programador tenia que escrbir explicitamente parte por parte cada regla del sistema, el \textit{machine learning} puede permitir que las computadoras identifiquen automáticamente patrones y relaciones en los datos sin tener que tener una intervención directa por el programador. Así, sea cualquier modelo puede tomar decisiones propias o generar predicciones sobre nuevos datos, basándose en lo aprendido durante en el entrenamiento de este. \\[3pt]
 Basado en lo anterior mencionado, el \textit{machine learning} no sigue reglas predifinidas, los algoritmos ML analizan subconjuntos de datos para construir modelos matemáticos que representen con precisión las relaciones entre variables, incluso si estas combinaciones no son evidentes o no pueden derivarse directamente de principios lógicos.
 
 \vspace{8pt}
-\textbf{ii. Features y Datasets} \\[2pt]
+\textbf{ii. Features y Datasets}\vspace{2pt}
 \begin{itemize}
     \item \textbf{Features}: Los features (o atributos en español) son las variables que describen cada ejemplo y que el modelo utiliza como entrada para aprender. 
     Pueden proceder directamente de los datos originales (por ejemplo, edad, temperatura) o derivarse mediante \textit{feature engineering}, que —según la página de Google for Developers\footnote{\url{https://developers.google.com/machine-learning/glossary\#f}}— hace mención de que su significado es crear una versión más optimizada de estos features agarrándolos de su forma cruda o \textit{raw}, dicho en inglés.
@@ -107,7 +125,7 @@ Basado en lo anterior mencionado, el \textit{machine learning} no sigue reglas p
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{Images/ejemplo csv2.jpg}
+    \includegraphics[width=1\textwidth]{Images/ejemplo csv2.jpg}
     \caption{Ejemplo dataset usando CSV.}
     \label{fig:Dataset-CSV}
 \end{figure}
@@ -149,13 +167,60 @@ El \textit{Machine Learning} (ML) comprende un conjunto de técnicas y algoritmo
 \vspace{2mm}
 \small\textit{Nota:} En la parte izquierda (aprendizaje supervisado), la linea discontinua representa una frontera de decisión aprendida a partir de datos etiquetados. En cambio, el gráfico derecho (aprendizaje no supervisado) muestra como los algoritmos agrupan automáticamente los datos sin etiquetas previas, basándose únicamente en similitud o cercanía.
 \end{figure}
-\textbf{b. Nociones de Redes Neuronales (NN)} \\[5pt]
+\textbf{b. Nociones de Redes Neuronales (NN)}
+\vspace{5pt}
 
-\textbf{i. Definición} \\[3pt]
+\textbf{i.Componentes de la Red: Neuronas, Capas, Pesos,
+Activación} \\[3pt]
+Las \textit{Redes Neuronales (NN)} son una clase de modelo matemáticos y computacionales diseñados para reconocer patrones y relaciones complejas entre datos. Se inspiran libremente en el funcionamiento del cerebro humano, particularmente en la forma en que las neuronas biológicas se comunican a través de sinapsis (unión, enlace) para procesar información.\\
+En términos generales, una red neuronal está compuesta por un conjunto de unidades computacionales llamadas \textbf{neuronas artificiales}, organizadas en capas conectadas entre sí mediante enlaces ponderados.En nuestro contexto actual acerca el aprendizaje automático, las redes neuronales forman la base del \textbf{aprendizaje profundo}(\textit{Deep Learning}), especialmente cuando estas redes poseen múltiples capas.
+
+\begin{itemize}
+    \item\textbf{Neuronas}: son las unidades básicas de procesamiento de la red. Cada neurona recibe entradas numéricas, las combina mediante una operación de suma ponderada y aplica una función de activación para determinar su salida. Esta salida se propaga hacia las neuronas de la siguiente capa. Aunque una sola neurona tiene capacidad limitada, al ser organizadas en grandes conjuntos y capas interconectadas, adquieren una potencia por sí solas.
+
+    \item\textbf{Capas}:
+    \begin{itemize}
+        \item \textbf{Capa de entrada}: Corresponde a los datos que se introducen en la red. Cada nodo representa una característica del conjunto de datos( por ejemplo: color, tamaño,edad,etc.):
+        \item\textbf{Capas ocultas}: Las capas ocultas de una red neuronal contienen unidades no observables y son las encargadas de transformar la información mediante operaciones sucesivas. En redes profundas (\textit{deep networks}), estas capas pueden ser numerosas, lo que permite modelar funciones altamente complejas.
+        \item\textbf{Capa de salida}: Genera la predicción final del modelo, ya sea una clase, un valor numérico o una distribución de probabilidad, dependiendo del problema a resolver.
+    \end{itemize}
+
+   \item\textbf{Pesos y Sesgos (Biases)}:
+    \begin{itemize}
+        \item \textbf{Pesos}: Cada conexión entre neuronas tiene un peso asociado, que representa la fuerza o importancia de esa conexión. Durante el proceso de entrenamiento, estos pesos son ajustados iterativamente para que la red aprenda de los datos y reduzca su error en las predicciones.
+        \item \textbf{Sesgos}: Son valores adicionales que se suman a la entrada de la función de activación de cada neurona. Actúan como un parámetro de ajuste adicional, permitiendo desplazar la salida de una neurona y mejorar la capacidad de aprendizaje del modelo.
+    \end{itemize}
+    \item \textbf{Funciones de Activación}: Estas funciones determinan la salida de cada neurona a partir de su entrada ponderada. Son importantes porque introducen no linealidades en el modelo, lo que nos permite que las redes neuronales aprendan relaciones complejas más allá de simples combinaciones lineales. Algunas de las funciones de activación más comunes incluyen:
+    \begin{itemize}
+        \item \textbf{ReLU (Rectified Linear Unit)}: Devuelve cero si la entrada es negativa, y la entrada misma si es positiva. Es eficiente y muy utilizada en redes profundas.
+        \item \textbf{Sigmoide}: Convierte las entradas en valores entre 0 y 1, útil en tareas de clasificación binaria(Util en siguientes páginas de la investigación.)
+        \item \textbf{Tanh (Tangente Hiperbólica)}: Similar a la sigmoide pero con salida entre -1 y 1, centrada en cero, lo cual puede favorecer una convergencia más rápida durante el entrenamiento.
+    \end{itemize}
+\end{itemize}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/tutorial_ml_0215.png}
+    \caption{Estructura típica de una red neuronal: incluye capa de entrada, capas ocultas y capa de salida.}
+    \label{fig:estructura-red-neuronal}
+\end{figure}
+\textbf{ii. Inferencia por propagación hacia adelante} \\[3pt]
+La propagación hacia adelante(\textit{forward propagation}) es el proceso por el que una red neuronal transforma los datos de entrada en predicciones o salidas, lo cual, si usamos tecnicismos, es el cálculo secuencial que mueve los datos desde la capa de entrada, a través de las capas ocultas y, finalmente, a la capa de salida. Durante este recorrido, los datos se transforman mediante conexiones ponderadas y funciones de activación, lo que permite a la red captar patrones complejos. \\
+La importancia de la propagación hacia adelante radica en que es el mecanismo principal por el cual el modelo genera sus predicciones basadas en los parámetros que ha aprendido durante el entrenamiento que se le da. Sin este proceso, no sería posible evaluar cómo se comporta la red ante nuevos datos sin medir su desempeño. Además, la propagación hacia adelante es esencial para calcular la función de pérdida, que es la medición de los errores entre las predicciones y los valores reales. Esta información es usada posteriormente durante la retropropagación  para ajustar los pesos de la red y mejorar su precisión.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Images/3eafe158-4126-48f0-ae70-65e707cc8988_668x427.jpg}
+    \caption{Forward propagation and backward propagation}
+    \label{fig:estructura-red-neuronal}
+\end{figure}
 \newpage
 \thispagestyle{empty}
-{\large \textbf{Fundamentos y justificación de GNNs}} \\[5pt]
+{\large \textbf{Fundamentos y justificación de GNNs}} \vspace{5pt}
+\\
 parte efrain
+
+\newpage
+\nocite{*}
+\printbibliography
 \end{document}
 
 

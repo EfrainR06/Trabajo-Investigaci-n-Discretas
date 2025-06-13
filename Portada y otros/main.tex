@@ -59,7 +59,7 @@
         {\Large \textbf{Estudiantes a cargo de la investigación:}} \\[10pt]
         {\large Sebastián Garro Granados \\ Joel Brenes Vargas \\ Santiago Jesús Hernández Chaves \\ Efraín Ignacio Retana Segura} \\[20pt]
         {\Large \textbf{Profesor a cargo del curso:}} \\[15pt]
-        {\large Carlos Loría Saenz} \\[120pt]
+        {\large Carlos Loría-Sáenz} \\[120pt]
         {\Large \textbf{Fecha:}} \\[15pt]
         {\large 17 de abril de 2025}
     \end{center}
@@ -80,15 +80,11 @@ Como parte del desarrollo, se presentan ejemplos demostrativos en Python donde s
 El informe final busca no solo cumplir con los requerimientos del curso, sino también proporcionar al lector una puerta de entrada clara, aplicada y documentada al fascinante mundo de las redes neuronales de grafos.
 
 \vspace{5pt}
-\textbf{Palabras clave:} grafos, redes neuronales, GNN, GCN, aprendizaje automático, aprendizaje supervisado, estructuras discretas, Python, clasificación de nodos.
+\textbf{Palabras clave:} grafos, redes neuronales, GNN, GCN, aprendizaje automático, aprendizaje supervisado, estructuras discretas, Python,nodos, clasificación de nodos.
 
 \newpage
-{\large \textbf{Índice de contenidos}}
-\vspace{5pt}
 \tableofcontents
 \newpage
-{\large \textbf{Índice de Tablas y Figuras}}
-\vspace{5pt}
 \listoftables
 \listoffigures
 \newpage
@@ -107,14 +103,18 @@ parte de garro
 
 \subsubsection{i. Definición} 
 \vspace{3pt}
-El \textit{Machine Learning} (ML) es una rama o campo de la inteligencia artificial (IA) que se enfoca en el desarrollo de algoritmos capaces de aprender a partir de datos. En el pasado donde el programador tenia que escrbir explicitamente parte por parte cada regla del sistema, el \textit{machine learning} puede permitir que las computadoras identifiquen automáticamente patrones y relaciones en los datos sin tener que tener una intervención directa por el programador. Así, sea cualquier modelo puede tomar decisiones propias o generar predicciones sobre nuevos datos, basándose en lo aprendido durante en el entrenamiento de este. \\[3pt]
-Basado en lo anterior mencionado, el \textit{machine learning} no sigue reglas predifinidas, los algoritmos ML analizan subconjuntos de datos para construir modelos matemáticos que representen con precisión las relaciones entre variables, incluso si estas combinaciones no son evidentes o no pueden derivarse directamente de principios lógicos.
+
+El \textit{Machine Learning} (ML) es una rama de la inteligencia artificial (IA) que se enfoca en el desarrollo de algoritmos capaces de aprender a partir de datos. En el pasado, los sistemas requerían que los programadores escribieran explícitamente cada regla, paso a paso. Sin embargo, con el uso de técnicas de aprendizaje automático, las computadoras pueden identificar patrones y relaciones en los datos sin necesidad de intervención directa por parte del programador~\cite{sanchez}. Así, un modelo puede tomar decisiones o hacer predicciones sobre nuevos datos basándose en lo aprendido durante su entrenamiento.
+
+Una de las principales ventajas del \textit{machine learning} es su capacidad para construir modelos matemáticos que representan con precisión las relaciones entre variables, incluso cuando estas no son evidentes o no pueden derivarse de principios lógicos~\cite{amazon2024}.
+
+
+
 
 \vspace{8pt}
 \subsubsection{ii. Features y Datasets}\vspace{2pt}
 \begin{itemize}
-    \item \textbf{Features}: Los features (o atributos en español) son las variables que describen cada ejemplo y que el modelo utiliza como entrada para aprender. 
-    Pueden proceder directamente de los datos originales (por ejemplo, edad, temperatura) o derivarse mediante \textit{feature engineering}, que —según la página de Google for Developers\footnote{\url{https://developers.google.com/machine-learning/glossary\#f}}— hace mención de que su significado es crear una versión más optimizada de estos features agarrándolos de su forma cruda o \textit{raw}, dicho en inglés.
+\item \textbf{Features}: Los features (o atributos en español) son las variables que describen cada ejemplo y que el modelo utiliza como entrada para aprender. Pueden proceder directamente de los datos originales (por ejemplo, edad, temperatura) o derivarse mediante \textit{feature engineering}, proceso que consiste en crear una versión más optimizada de estos features transformándolos desde su forma cruda o \textit{raw}~\cite{googleML2025}.
 \end{itemize}
 
 \begin{table}[h]
@@ -136,7 +136,7 @@ Basado en lo anterior mencionado, el \textit{machine learning} no sigue reglas p
 \end{table}
 
 \begin{itemize}
-    \item \textbf{Dataset}: un \textit{dataset} es la colección organizada de ejemplos sobre los que entrenamos y evaluamos el modelo. Muchos datasets se representan en tablas (por ejemplo, CSV o DataFrames), donde cada fila es un ejemplo y cada columna es un \textit{feature} o una etiqueta(\textit{label}). También pueden provenir de otros formatos como archivos de logs o protocolos binarios. Es importante para el \textit{machine learning} (ML) dividir el \textit{dataset} en subconjuntos de entrenamiento, validación y prueba para garantizar que el modelo generalice correctamente datos nuevos.
+    \item \textbf{Dataset}: un \textit{dataset} es la colección organizada de ejemplos sobre los que entrenamos y evaluamos el modelo. Muchos datasets se representan en tablas (por ejemplo, CSV o DataFrames), donde cada fila es un ejemplo y cada columna es un \textit{feature} o una etiqueta(\textit{label}). También pueden provenir de otros formatos como archivos de logs o protocolos binarios. Es importante para el \textit{machine learning} (ML) dividir el \textit{dataset} en subconjuntos de entrenamiento, validación y prueba para garantizar que el modelo generalice correctamente datos nuevos ~\cite{googleML2025}.
 \end{itemize}
 
 \begin{table}[h]
@@ -156,9 +156,9 @@ Basado en lo anterior mencionado, el \textit{machine learning} no sigue reglas p
 \end{table}
 \vspace{8pt}
 \subsubsection{iii. Entrenamiento}
-Es el proceso en el cual un modelo ajusta sus parámetros internos -principalmente los pesos de sus conexiones- con el objetivo de minimizar un error o función de perdida. Este proceso requiere de una base de datos etiquetada (en el caso de aprendizaje supervisada) y un algoritmo de optimización, siendo el más común \textit{descenso por el gradiente} (\textit{gradient descent}).\\[1pt]
-Durante el entrenamiento, el modelo realiza predicciones sobre los datos de entrada y compara a sus resultados con las salidas reales. Con base en esa comparación, se calcula el error y se utiliza una técnica llamada \textbf{retropropagación del error} 
-(\textit{backpropagation}) para distribuir este error hacia atrás a través de las capas de la red. Este mecanismo permite que cada peso se ajuste de forma proporcional al impacto que tuvo el error final. Este mismo esquema se adapta al entrenamiento de las redes neuronales de grafos (GNNs), con la diferencia de que los datos se representan como grafos, y el modelo aprende no solo de los atributos de cada nodo, sino también de su estructura y conexiones.
+Es el proceso en el cual un modelo ajusta sus parámetros internos -principalmente los pesos de sus conexiones- con el objetivo de minimizar un error o función de pérdida~\cite{nvidia}. Este proceso requiere de una base de datos etiquetada (en el caso de aprendizaje supervisado) y un algoritmo de optimización, siendo el más común \textit{descenso por el gradiente} (\textit{gradient descent})~\cite{sanchez}.
+
+Durante el entrenamiento, el modelo realiza predicciones sobre los datos de entrada y compara sus resultados con las salidas reales. Con base en esa comparación, se calcula el error y se utiliza una técnica llamada \textbf{retropropagación del error} (\textit{backpropagation}) para distribuir este error hacia atrás a través de las capas de la red. Este mecanismo permite que cada peso se ajuste de forma proporcional al impacto que tuvo en el error final.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.5\textwidth]{Images/Frame-13.png}
@@ -168,14 +168,14 @@ Durante el entrenamiento, el modelo realiza predicciones sobre los datos de entr
 
 \vspace{7pt}
 \subsubsection{iv. Tipos de Aprendizaje}
-El \textit{Machine Learning} (ML) comprende un conjunto de técnicas y algoritmos que permiten a las máquinas aprender de los datos y realizar predicciones o tomar deciones sin estar explícitamente programadas para cada tarea, una de las distinciones fundamentales dentro del ML se basa en el tipo de datos disponibles durante el entrenamiento, especificamente en si esos datos incluyen o no etiquetas o resultados esperados. De esta forma, se clasifican los enfoques de aprendizaje en cuatros categorías principales: \textbf{supervisado}, \textbf{no supervisado}, \textbf{semisupervisado} y \textbf{por refuerzo}. Cada uno de estos métodos responde a diferentes necesidades, en esta investigación se usarán las 2 primeras, \textbf{supervisado} y \textbf{no supervisado}.
+El \textit{Machine Learning} (ML) comprende un conjunto de técnicas y algoritmos que permiten a las máquinas aprender de los datos y realizar predicciones o tomar decisiones sin estar explícitamente programadas para cada tarea~\cite{elementosIA}. Una de las distinciones fundamentales dentro del ML se basa en el tipo de datos disponibles durante el entrenamiento, específicamente en si esos datos incluyen o no etiquetas o resultados esperados~\cite{sanchez}. De esta forma, se clasifican los enfoques de aprendizaje en cuatro categorías principales: \textbf{supervisado}, \textbf{no supervisado}, \textbf{semisupervisado} y \textbf{por refuerzo}.
 \begin{itemize}
-    \item \textbf{Aprendizaje Supervisado}: Este tipo de aprendizaje se basa en un conjunto de datos etiquetado, en el que cada instancia contiene características (\textit{features}) y un resultado conocido (\textit{target}). El objetivo es que el modelo aprenda una función de mapeo $f(x) = y$, $x$ representa las entradas y $y$ la salida esperada. Para dar un ejemplo, pensemos en una empresa inmobiliaria que busca predecir el precio de una casa según su número de habitaciones, area en metros cuadrados y ubicación puede utilizar aprendizaje supervisado entrenando un modelo con ejemplos historicos de ventas. El conjunto de datos se divide usualmente en subconjuntos de entrenamiento, validación y prueba, para ajustar, afinar y evualuar el modelo, respectivamente. Las tareas tipicas en este enfoque incluyen:
+    \item \textbf{Aprendizaje Supervisado}: Este tipo de aprendizaje se basa en un conjunto de datos etiquetado, en el que cada instancia contiene características (\textit{features}) y un resultado conocido (\textit{target}) ~\cite{choi2020introduction}. El objetivo es que el modelo aprenda una función de mapeo $f(x) = y$, $x$ representa las entradas y $y$ la salida esperada. Para dar un ejemplo, pensemos en una empresa inmobiliaria que busca predecir el precio de una casa según su número de habitaciones, area en metros cuadrados y ubicación puede utilizar aprendizaje supervisado entrenando un modelo con ejemplos historicos de ventas. El conjunto de datos se divide usualmente en subconjuntos de entrenamiento, validación y prueba, para ajustar, afinar y evualuar el modelo, respectivamente. Las tareas tipicas en este enfoque incluyen:
     \begin{itemize}
     \item\textbf{Regresión}: predicción de valores numéricos continuos (por ejemplo, precios de viviendas).
     \item\textbf{Clasificación}: predicción de categorias discretas (por ejemplo, rango de precios como (0-125k), (125-250k), etc.).    
     \end{itemize}
-    \item \textbf{No Supervisado}: A diferencia del aprendizaje supervisado, este enfoque no cuenta con etiquetas o salidas conocidas asociadas a los datos. Es decir, el modelo no tiene una \textquotedblleft respuesta correcta\textquotedblright~que pueda utilizar como guia durante el entrenamiento. En su lugar, debe analizar los datos para identificar patrones subyacentes,estructuras o agrupaciones naturales presentes en ellos. El objetivo es encontrar representaciones útiles de los datos que permiten descubrir relaciones desconocidos o inferir características relevantes sin intervención humana directa. \\[2pt]
+    \item \textbf{No Supervisado}: A diferencia del aprendizaje supervisado, este enfoque no cuenta con etiquetas o salidas conocidas asociadas a los datos. Es decir, el modelo no tiene una \textquotedblleft respuesta correcta\textquotedblright~que pueda utilizar como guia durante el entrenamiento. En su lugar, debe analizar los datos para identificar patrones subyacentes,estructuras o agrupaciones naturales presentes en ellos. El objetivo es encontrar representaciones útiles de los datos que permiten descubrir relaciones desconocidos o inferir características relevantes sin intervención humana directa ~\cite{choi2020introduction}. \\[2pt]
     Este tipo de aprendizaje es especialmente útil en contextos donde obtener etiquetas es costoso y lento. En muchos casos de la vida real usando este metodo, como grandes bases de datos de clientes, imágenes, secuencias genéticas o registros médicos, se dispone de gran cantidad de informacíón sin clasificar, por lo que los algoritmos no supervisados resultan clave para el análisis exploratiorio y la extración automatica de conocimiento. \\[2pt]
     Las tareas más comunes dentro del aprendizaje no supervisado son:
     \begin{itemize}
@@ -254,11 +254,12 @@ El \textit{Machine Learning} (ML) comprende un conjunto de técnicas y algoritmo
 
 \subsubsection{i.Componentes de la Red: Neuronas, Capas, Pesos,Activación} 
 \vspace{3pt}
-Las \textit{Redes Neuronales (NN)} son una clase de modelo matemáticos y computacionales diseñados para reconocer patrones y relaciones complejas entre datos. Se inspiran libremente en el funcionamiento del cerebro humano, particularmente en la forma en que las neuronas biológicas se comunican a través de sinapsis (unión, enlace) para procesar información.\\
-En términos generales, una red neuronal está compuesta por un conjunto de unidades computacionales llamadas \textbf{neuronas artificiales}, organizadas en capas conectadas entre sí mediante enlaces ponderados.En nuestro contexto actual acerca el aprendizaje automático, las redes neuronales forman la base del \textbf{aprendizaje profundo}(\textit{Deep Learning}), especialmente cuando estas redes poseen múltiples capas.
+Las \textit{Redes Neuronales (NN)} son una clase de modelos matemáticos y computacionales diseñados para reconocer patrones y relaciones complejas entre datos~\cite{sanchez}. Se inspiran libremente en el funcionamiento del cerebro humano, particularmente en la forma en que las neuronas biológicas se comunican a través de sinapsis para procesar información.
+
+En términos generales, una red neuronal está compuesta por un conjunto de unidades computacionales llamadas \textbf{neuronas artificiales}, organizadas en capas conectadas entre sí mediante enlaces ponderados~\cite{elementosIA}. En nuestro contexto actual acerca del aprendizaje automático, las redes neuronales forman la base del \textbf{aprendizaje profundo} (\textit{Deep Learning}), especialmente cuando estas redes poseen múltiples capas.
 
 \begin{itemize}
-    \item\textbf{Neuronas}: son las unidades básicas de procesamiento de la red. Cada neurona recibe entradas numéricas, las combina mediante una operación de suma ponderada y aplica una función de activación para determinar su salida. Esta salida se propaga hacia las neuronas de la siguiente capa. Aunque una sola neurona tiene capacidad limitada, al ser organizadas en grandes conjuntos y capas interconectadas, adquieren una potencia por sí solas.
+    \item\textbf{Neuronas}: son las unidades básicas de procesamiento de la red. Cada neurona recibe entradas numéricas, las combina mediante una operación de suma ponderada y aplica una función de activación para determinar su salida. Esta salida se propaga hacia las neuronas de la siguiente capa. Aunque una sola neurona tiene capacidad limitada, al ser organizadas en grandes conjuntos y capas interconectadas, adquieren una potencia por sí solas ~\cite{datacamp_redes}.
 
     \item\textbf{Capas}:
     \begin{itemize}
@@ -272,7 +273,7 @@ En términos generales, una red neuronal está compuesta por un conjunto de unid
         \item \textbf{Pesos}: Cada conexión entre neuronas tiene un peso asociado, que representa la fuerza o importancia de esa conexión. Durante el proceso de entrenamiento, estos pesos son ajustados iterativamente para que la red aprenda de los datos y reduzca su error en las predicciones.
         \item \textbf{Sesgos}: Son valores adicionales que se suman a la entrada de la función de activación de cada neurona. Actúan como un parámetro de ajuste adicional, permitiendo desplazar la salida de una neurona y mejorar la capacidad de aprendizaje del modelo.
     \end{itemize}
-    \item \textbf{Funciones de Activación}: Estas funciones determinan la salida de cada neurona a partir de su entrada ponderada. Son importantes porque introducen no linealidades en el modelo, lo que nos permite que las redes neuronales aprendan relaciones complejas más allá de simples combinaciones lineales. Algunas de las funciones de activación más comunes incluyen:
+    \item \textbf{Funciones de Activación}: Estas funciones determinan la salida de cada neurona a partir de su entrada ponderada. Son importantes porque introducen no linealidades en el modelo, lo que nos permite que las redes neuronales aprendan relaciones complejas más allá de simples combinaciones lineales ~\cite{datacamp_redes}. Algunas de las funciones de activación más comunes incluyen:
     \begin{itemize}
         \item \textbf{ReLU (Rectified Linear Unit)}: Devuelve cero si la entrada es negativa, y la entrada misma si es positiva. Es eficiente y muy utilizada en redes profundas.
         \item \textbf{Sigmoide}: Convierte las entradas en valores entre 0 y 1, útil en tareas de clasificación binaria. 
@@ -319,7 +320,7 @@ En términos generales, una red neuronal está compuesta por un conjunto de unid
     \label{fig:red-neuronal-tikz}
 \end{figure}
 \subsubsection{ii. Inferencia por propagación hacia adelante}
-La propagación hacia adelante(\textit{forward propagation}) es el proceso por el que una red neuronal transforma los datos de entrada en predicciones o salidas, lo cual, si usamos tecnicismos, es el cálculo secuencial que mueve los datos desde la capa de entrada, a través de las capas ocultas y, finalmente, a la capa de salida. Durante este recorrido, los datos se transforman mediante conexiones ponderadas y funciones de activación, lo que permite a la red captar patrones complejos. \\
+La propagación hacia adelante (\textit{forward propagation}) es el proceso por el que una red neuronal transforma los datos de entrada en predicciones o salidas~\cite{datacamp_redes}. En términos técnicos, es el cálculo secuencial que mueve los datos desde la capa de entrada, a través de las capas ocultas y, finalmente, a la capa de salida~\cite{nvidia}. Durante este recorrido, los datos se transforman mediante conexiones ponderadas y funciones de activación, lo que permite a la red captar patrones complejos. \\
 La importancia de la propagación hacia adelante radica en que es el mecanismo principal por el cual el modelo genera sus predicciones basadas en los parámetros que ha aprendido durante el entrenamiento que se le da. Sin este proceso, no sería posible evaluar cómo se comporta la red ante nuevos datos sin medir su desempeño. Además, la propagación hacia adelante es esencial para calcular la función de pérdida, que es la medición de los errores entre las predicciones y los valores reales. Esta información es usada posteriormente durante la retropropagación  para ajustar los pesos de la red y mejorar su precisión.
 \begin{figure}[H]
     \centering
@@ -374,17 +375,17 @@ La importancia de la propagación hacia adelante radica en que es el mecanismo p
 
 \subsubsection{iii. Entrenamiento}
 \vspace{3pt}
-El entrenamiento de una red neuronal es un proceso donde ajustamos pesos internos de la red con el fin de minimizar la diferencia entre las predicciones de la red y los valores reales esperados. Este proceso permite que la red aprenda a representar patrones presentes en los datos, generalizando su conocimiento para realizar predicciones sobre datos no vistos. El entrenamiento esta compuesto por dos fases principales: la evaluación del error, por medio de una \textbf{función de perdida}, y la \textbf{actualización de los pesos} usando el algoritmo de \textit{propagación hacia atrás} (\textit{backpropagation}).
+El entrenamiento de una red neuronal es un proceso donde ajustamos los pesos internos de la red con el fin de minimizar la diferencia entre las predicciones de la red y los valores reales esperados. Este proceso permite que la red aprenda a representar patrones presentes en los datos, generalizando su conocimiento para realizar predicciones sobre datos no vistos~\cite{zhou2020graph}. El entrenamiento está compuesto por dos fases principales: la evaluación del error, por medio de una \textbf{función de pérdida}, y la \textbf{actualización de los pesos} usando el algoritmo de \textit{propagación hacia atrás} (\textit{backpropagation})~\cite{nvidia}.
 \begin{itemize}
 \item\textbf{1. Función de pérdida}:\newline
-Es una función de pérdida cuantificada para saber qué tan bien o mal está funcionando una red. Calcula la diferencia entre la salida predicha por la red y el valor real esperado. El objetivo del entrenamiento es minimizar esta función de perdida mediante la actualización iterativa de los pesos. \newline Algunas funciones comunes son:
+Es una función de pérdida cuantificada para saber qué tan bien o mal está funcionando una red. Calcula la diferencia entre la salida predicha por la red y el valor real esperado ~\cite{zhou2020graph}. El objetivo del entrenamiento es minimizar esta función de perdida mediante la actualización iterativa de los pesos. \newline Algunas funciones comunes son:
 \begin{itemize}
     \item \textbf{Error cuadrático medio (MSE)}: Utilizada en tareas de regresión, se define como : $\mathcal{L}_{MSE} = \frac{1}{n} \sum_{i=1}^{n}(y_i - \hat{y}_i)^2$
     \item \textbf{Entropía cruzada}: Utilizada para clasificación, especialmente con salidas probabilísticas. Si se tiene una salida verdadera $y$ y una predicción $\hat{y}$, la pérdida es: $\mathcal{L}_{CE} = -\sum y \log(\hat{y})$
 \end{itemize}
 
 \item\textbf{2. Propagación hacia atrás (Backpropagation)}:\newline
-Este es un algoritmo central para entrenar redes neuronales. Utiliza el cálculo de derivadas (gradientes) para actualizar los pesos de la red en dirección contraria a la propagación hacia adelante. El proceso sigue los siguientes pasos:
+Este es un algoritmo central para entrenar redes neuronales. Utiliza el cálculo de derivadas (gradientes) para actualizar los pesos de la red en dirección contraria a la propagación hacia adelante ~\cite{nvidia}. El proceso sigue los siguientes pasos:
 \begin{enumerate}
     \item Se realiza una propagación hacia adelante para obtener las predicciones.
     \item Se calcula la pérdida comparando con los valores reales.
@@ -403,15 +404,16 @@ Para evitar el sobreajuste (overfitting), es común introducir técnicas de regu
     \label{fig:neurona-artificial}
 \end{figure}
 
-\textbf{c. Aplicaciones} \\[3pt]
-Las redes neuronales tienen un amplio uso de aplicaciones practicas que abarcan desde el análisis de imágenes hasta el procesamiento de lenguaje natural. Estás aplicaciones aprovechan la capacidad de las redes para aprender representaciones complejas y generalizar a partir de datos de entrenamiento en diferentes contextos del mundo real.
+\subsection{c. Aplicaciones} 
+\vspace{3pt}
+Las redes neuronales tienen un amplio uso de aplicaciones practicas que abarcan desde el análisis de imágenes hasta el procesamiento de lenguaje natural ~\cite{hui2021gnn}. Estás aplicaciones aprovechan la capacidad de las redes para aprender representaciones complejas y generalizar a partir de datos de entrenamiento en diferentes contextos del mundo real.
 \begin{itemize}
 \item \textbf{i. Reconocimiento de Imágenes}; \newline
-Las redes neuronales de grafos (GNN) han ampliado las posibilidades en el reconocimiento de imágenes, especialmente cuando estas se representan como grafos, como en el caso de imágenes con superpíxeles o estructuras espaciales irregulares. Permiten tareas como clasificación de objetos, detección de patrones, segmentación y reconocimiento de escritura manuscrita a partir de representaciones gráficas. Estas redes son capaces de extraer automáticamente características relevantes mediante el intercambio de información entre nodos conectados, lo cual reduce la necesidad de ingeniería manual de características. Se aplican en visión por computadora basada en grafos, diagnóstico médico (analizando relaciones espaciales en imágenes), vehículos autónomos (procesamiento estructural de escenas), y sistemas inteligentes de vigilancia.
+Las redes neuronales de grafos (GNN) han ampliado las posibilidades en el reconocimiento de imágenes, especialmente cuando estas se representan como grafos, como en el caso de imágenes con superpíxeles o estructuras espaciales irregulares. Permiten tareas como clasificación de objetos, detección de patrones, segmentación y reconocimiento de escritura manuscrita a partir de representaciones gráficas ~\cite{hui2021gnn}. Estas redes son capaces de extraer automáticamente características relevantes mediante el intercambio de información entre nodos conectados, lo cual reduce la necesidad de ingeniería manual de características. Se aplican en visión por computadora basada en grafos, diagnóstico médico (analizando relaciones espaciales en imágenes), vehículos autónomos (procesamiento estructural de escenas), y sistemas inteligentes de vigilancia.
 
 
     \item \textbf{ii. Procesamiento de Lenguaje Natural (NLP)}: \newline
-    En el campo del procesamiento del lenguaje natural, las redes neuronales han hecho posibles avances significativos gracias a arquitecturas como RNN, LSTM y los modelos de transformadores. Estas arquitecturas permiten capturar la estructura y semántica del lenguaje humano, facilitando tareas como traducción automática, análisis de sentimientos, generación de texto, respuesta a preguntas, detección de spam, y clasificación de documentos. Modelos de lenguaje como BERT, GPT y sus derivados se entrenan con enormes cantidades de datos textuales, lo que les permite comprender y generar lenguaje de forma coherente, ofreciendo la base para asistentes virtuales, motores de búsqueda inteligentes y herramientas de apoyo al usuario en tiempo real.
+    En el campo del procesamiento del lenguaje natural, las redes neuronales han hecho posibles avances significativos gracias a arquitecturas como RNN, LSTM y los modelos de transformadores ~\cite{aws2025nlp}. Estas arquitecturas permiten capturar la estructura y semántica del lenguaje humano, facilitando tareas como traducción automática, análisis de sentimientos, generación de texto, respuesta a preguntas, detección de spam, y clasificación de documentos. Modelos de lenguaje como BERT, GPT y sus derivados se entrenan con enormes cantidades de datos textuales, lo que les permite comprender y generar lenguaje de forma coherente, ofreciendo la base para asistentes virtuales, motores de búsqueda inteligentes y herramientas de apoyo al usuario en tiempo real.
 
 \end{itemize}
 \newpage
@@ -446,69 +448,161 @@ Un \textbf{grafo} $G = (V, E)$ está compuesto por un conjunto de nodos (vértic
 \end{figure}
 
 \newpage 
-{\section{Caso de Estudio GCN}} \vspace{10pt}
-
+\section{Caso de Estudio GCN} \vspace{10pt}
 
 \subsection{a. Definición y Justificación}
 
-Una Red Convolucional sobre Grafos (GCN) es una arquitectura de red neuronal diseñada para operar directamente sobre estructuras de grafo. A diferencia de las redes neuronales tradicionales, que esperan entradas estructuradas como vectores o matrices, las GCN permiten realizar tareas como clasificación de nodos, predicción de enlaces o clasificación de grafos utilizando la topología del grafo y las características de sus nodos.
+Una Red Convolucional sobre Grafos (GCN, por sus siglas en inglés) es un tipo de red neuronal diseñada para trabajar directamente con estructuras en forma de grafo. A diferencia de las redes tradicionales, que esperan como entrada datos organizados en forma de vectores o matrices (como las imágenes o secuencias), las GCN pueden procesar datos cuya forma natural es un conjunto de nodos conectados por relaciones, como ocurre en redes sociales, mapas de relaciones científicas o redes biológicas.
 
-La GCN fue propuesta por Kipf y Welling (2016), resolviendo limitaciones clave en la aplicación de redes neuronales a grafos: no requiere una representación vectorial explícita del grafo y permite una propagación local eficiente sobre los nodos. Su diseño es especialmente útil cuando la estructura del grafo y las relaciones locales entre nodos son fundamentales para la tarea.
+Las GCN fueron propuestas por Thomas Kipf y Max Welling en 2016~\cite{kipf2016semi}, como una solución para tareas como la clasificación de nodos dentro de un grafo, especialmente en situaciones donde no todos los nodos tienen etiquetas conocidas. Lo innovador de este modelo es que puede aprender a predecir etiquetas utilizando tanto las características de cada nodo como la estructura de conexiones entre ellos, sin necesidad de transformar el grafo en una estructura lineal.
+
+Esto es especialmente útil en problemas donde solo se conoce la clase o etiqueta de algunos pocos nodos, ya que la GCN puede aprovechar las conexiones del grafo para extender esa información a los demás nodos. Además, las GCN permiten realizar este proceso de forma eficiente, utilizando operaciones simples pero efectivas que se pueden aplicar directamente sobre la estructura del grafo.
 
 \subsection{b. Características Distintivas}
 
-Las GCNs presentan las siguientes características principales:
+Las GCN tienen varias propiedades clave que las hacen diferentes a otros modelos de aprendizaje automático. A continuación se explican junto con un ejemplo ilustrativo basado en una red de recomendación de películas:
 
 \begin{itemize}
-    \item \textbf{Agregación local de información:} cada nodo combina la información de sus vecinos de primer orden y la suya propia.
-    \item \textbf{Parámetros compartidos:} los filtros o pesos se aplican globalmente, similar a las redes convolucionales en imágenes.
-    \item \textbf{Invariancia al orden de los vecinos:} la operación de agregación es conmutativa (suma o promedio), garantizando que el orden de los vecinos no afecte el resultado.
+    \item \textbf{Agregación de información local:} en cada capa, un nodo combina su información con la de sus vecinos directos. Por ejemplo, si una persona no ha indicado sus gustos de películas, pero sus amigos sí lo han hecho, se puede usar esa información para inferir qué películas le podrían gustar.
+
+    \item \textbf{Uso de los mismos parámetros:} la misma matriz de pesos se aplica a todos los nodos. Esto permite detectar patrones similares en distintas partes del grafo. En nuestro ejemplo, sin importar si un nodo representa a “Ana” o “Luis”, el modelo usa los mismos parámetros para actualizar su representación.
+
+    \item \textbf{Independencia del orden de los vecinos:} como el orden de los amigos no afecta a quién me influye más o menos, las operaciones como el promedio son ideales para que el modelo funcione sin importar cómo estén ordenados los vecinos.
+
+    \item \textbf{Generalización a distintos grafos:} una GCN puede usarse en grafos con estructuras diferentes. Por ejemplo, si se entrena en una red de usuarios de una ciudad, puede aplicarse luego a otra red de usuarios de otra ciudad que tengan conexiones y gustos similares.
 \end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[every node/.style={circle, draw, minimum size=1cm}, node distance=2cm]
+        \node[fill=yellow!30] (A) at (0,0) {¿?};
+        \node[fill=blue!20] (B) at (-2,1.5) {Si};
+        \node[fill=blue!20] (C) at (2,1.5) {Si};
+        \node[fill=blue!20] (D) at (-2,-1.5) {Si};
+        \node[fill=red!20] (E) at (2,-1.5) {No};
+
+        \draw (A) -- (B);
+        \draw (A) -- (C);
+        \draw (A) -- (D);
+        \draw (A) -- (E);
+    \end{tikzpicture}
+    \caption{Ejemplo de GCN en una red de recomendación. El nodo central no tiene información directa, pero puede inferirse por los gustos de sus amigos (Si = le gusta el cine, No = no le gusta) \textit{Fuente: Elaboración propia}.}
+    \label{fig:movie_recommendation}
+\end{figure}
+
+\vspace{0.5em}
+En la Figura, el nodo central representa a una persona la cual se desconoce su gusto por el cine (¿?). Sin embargo, tres de sus amigos ya indicaron que les gusta el cine, y uno que no. Gracias a la GCN, el nodo puede actualizar su representación combinando estas señales y así predecir si probablemente también le gusten las películas.
+
+
 
 
 \subsection{c. Modelo de Propagación}
 
-El modelo de propagación define cómo se combinan los datos estructurales del grafo con las características de los nodos para producir nuevas representaciones. A continuación, se describen sus componentes clave:
+El modelo de propagación define cómo se actualizan las representaciones de los nodos usando tanto sus características como las conexiones en el grafo. Esto se hace combinando dos elementos: la matriz de adyacencia (que indica quién está conectado con quién) y la matriz de características (que guarda los datos de cada nodo).
 
 \subsubsection{i. Features}
 
-Cada nodo posee un vector de características $\mathbf{x}_i \in \mathbb{R}^F$, donde $F$ es el número de características. Por ejemplo, en el dataset Cora, cada nodo representa un artículo científico y cada vector indica la presencia de ciertas palabras en su contenido.
+Cada nodo $i$ tiene un vector de características $\mathbf{x}_i \in \mathbb{R}^F$, donde $F$ es el número de atributos que describen ese nodo. Por ejemplo, en un grafo de artículos científicos como Cora, estos atributos pueden indicar qué palabras aparecen en cada artículo.
 
-La matriz completa de características se denota como $X \in \mathbb{R}^{N \times F}$, siendo $N$ el número de nodos.
+Si hay $N$ nodos, se puede representar toda la información en una sola matriz $X \in \mathbb{R}^{N \times F}$, donde cada fila corresponde a un nodo y cada columna a una característica.
 
 \subsubsection{ii. Matriz de Adyacencia}
 
-La estructura del grafo se representa mediante una matriz de adyacencia $A \in \mathbb{R}^{N \times N}$, donde $A_{ij} = 1$ indica una conexión entre los nodos $i$ y $j$. Se suele trabajar con una versión modificada: $\hat{A} = A + I$, que incluye autoconexiones (self-loops) para permitir que cada nodo propague su propia información.
+La \textit{matriz de adyacencia}, denotada como $A \in \mathbb{R}^{N \times N}$. Esta matriz tiene un valor $A_{ij} = 1$ si existe una conexión directa (una arista) entre el nodo $i$ y el nodo $j$, y un valor $A_{ij} = 0$ si no hay conexión.
+
+Sin embargo, en el modelo GCN también se quiere que cada nodo tenga en cuenta su propia información al actualizarse. Para lograr esto, se agregan conexiones del nodo consigo mismo, llamadas \textit{autoconexiones} o \textit{self-loops}. Esto se hace sumando la matriz identidad $I_N$ a la matriz de adyacencia original:
+
+\[
+\hat{A} = A + I_N
+\]
+
+Esta nueva matriz $\hat{A}$ se utiliza en los cálculos posteriores para la propagación de información.
+
 
 \subsubsection{iii. Matriz de Pesos}
 
-La operación de propagación incluye una transformación lineal de los vectores agregados, mediante una matriz de pesos aprendible $W^{(l)}$ para la capa $l$. La fórmula general es:
+La \textit{matriz de pesos}, denotada como $W^{(l)}$, se utiliza para transformar las representaciones de los nodos en cada capa $l$ de la GCN. Esta transformación es lineal y permite que el modelo aprenda a combinar y proyectar las características de los nodos a un nuevo espacio de representación.
+
+Cada capa tiene su propia matriz de pesos, que se ajusta automáticamente durante el entrenamiento. Esta matriz actúa sobre la información agregada de los vecinos y del propio nodo, permitiendo capturar patrones útiles para la tarea de aprendizaje.
+
+La fórmula general para calcular la salida de una capa es:
 
 \[
 H^{(l+1)} = \sigma\left( \hat{D}^{-1/2} \hat{A} \hat{D}^{-1/2} H^{(l)} W^{(l)} \right)
 \]
 
-donde $H^{(0)} = X$, $\hat{D}$ es la matriz diagonal de grados de $\hat{A}$, y $\sigma$ es una función de activación, usualmente ReLU.
+donde:
+\begin{itemize}
+    \item $H^{(0)} = X$, la matriz de características iniciales de los nodos,
+    \item $\hat{A}$ es la matriz de adyacencia con autoconexiones,
+    \item $\hat{D}$ es la matriz diagonal de grados asociada a $\hat{A}$,
+    \item $\sigma$ es una función de activación no lineal.
+\end{itemize}
 
 \subsubsection{iv. Normalización y Activación}
 
-El uso de la normalización simétrica $\hat{D}^{-1/2} \hat{A} \hat{D}^{-1/2}$ estabiliza la escala de los datos, permitiendo una propagación más robusta. Se utiliza ReLU como activación intermedia y softmax para la salida final en tareas de clasificación.
+El término $\hat{D}^{-1/2} \hat{A} \hat{D}^{-1/2}$ realiza una \textit{normalización simétrica} sobre la matriz de adyacencia modificada $\hat{A}$. Esta normalización ajusta los valores de las conexiones en función del grado de los nodos, es decir, del número total de conexiones que tiene cada nodo, incluyendo las autoconexiones.
 
-\subsection{d. Agregación de features y transformación de nodos}
+Para construir la matriz $\hat{D}$, se calcula la suma de cada fila de $\hat{A}$ y se coloca ese valor en la diagonal correspondiente. De esta forma, $\hat{D}_{ii} = \sum_j \hat{A}_{ij}$. El objetivo de esta normalización es evitar que los nodos con muchos vecinos dominen el proceso de agregación, manteniendo un equilibrio entre la influencia de todos los nodos.
 
-En cada capa, un nodo $v$ actualiza su representación como función de su propio vector y los de sus vecinos. Este proceso de agregación local se puede repetir en múltiples capas, permitiendo que cada nodo incorpore información de su vecindad de orden superior. Así, tras $k$ capas, cada nodo tiene contexto estructural de hasta sus $k$-vecinos.
+La función $\sigma$ representa una activación no lineal que se aplica después de la agregación y la transformación lineal. En las capas ocultas se suele usar la función ReLU, que introduce no linealidad al modelo. En la capa final, si el problema es de clasificación, se utiliza la función softmax para obtener una distribución de probabilidades sobre las posibles clases.
+
+\subsection{d. Agregación de Features y Transformación de Nodos}
+
+En cada capa de una GCN, los nodos actualizan sus representaciones combinando sus propias características con las de sus vecinos. Este proceso se conoce como \textit{agregación de features}. A medida que el modelo avanza por las capas, cada nodo puede acceder a información de vecinos más lejanos dentro del grafo.
+
+La representación del nodo $v$ en la capa $l+1$ se calcula como:
+
+\[
+\mathbf{h}_v^{(l+1)} = \sigma \left( \sum_{u \in \mathcal{N}(v) \cup \{v\}} \frac{1}{\sqrt{d_v d_u}} \mathbf{h}_u^{(l)} W^{(l)} \right)
+\]
+
+donde $\mathcal{N}(v)$ es el conjunto de vecinos del nodo $v$, y $d_v$ es su grado (incluyendo la autoconexión). En esta fórmula, cada nodo combina las representaciones de sus vecinos y las suyas propias, las transforma linealmente con $W^{(l)}$, y aplica una función de activación.
+
+Este proceso se repite en múltiples capas. Con cada nueva capa, el nodo incorpora información de una vecindad más amplia, lo que permite construir una representación final que refleja tanto sus atributos individuales como la estructura del grafo a su alrededor.
+
 
 \subsection{e. Aplicaciones}
 
 \subsubsection{i. Redes Sociales}
 
-En redes sociales, los nodos pueden representar usuarios, y las aristas, relaciones de amistad o seguimiento. Las GCNs permiten realizar tareas como clasificación de usuarios por intereses, detección de comunidades, o predicción de vínculos.
+Las redes sociales digitales, como Facebook, Twitter o Instagram, pueden modelarse naturalmente como grafos, donde cada nodo representa a un usuario y cada arista representa una relación social, como amistad, seguimiento o interacción frecuente. Esta estructura gráfica permite aplicar modelos GCN para realizar diversas tareas que requieren entender tanto las características de los usuarios como su posición dentro de la red.
 
-\subsubsection{ii. Otros Casos}
-FALTA TRABAJAR
+Una aplicación común es la \textit{clasificación de usuarios}, donde se desea predecir intereses, grupos a los que pertenece una persona o su probabilidad de interactuar con ciertos contenidos. Las GCN permiten usar no solo los datos propios de cada usuario (como sus publicaciones, gustos o edad), sino también los datos de sus amigos o contactos cercanos. Esto es especialmente útil cuando un usuario tiene poca información disponible: su vecindad en el grafo puede ser suficiente para hacer una predicción.
 
-\vspace{1em}
-\noindent Para tareas donde la estructura del grafo es significativa, las GCNs ofrecen una herramienta poderosa, con buenos resultados en escenarios reales.
+Otras aplicaciones incluyen:
+
+\begin{itemize}
+    \item \textbf{Detección de comunidades:} identificar grupos densamente conectados que comparten características similares.
+    \item \textbf{Predicción de vínculos:} anticipar la aparición de nuevas relaciones entre usuarios, como sugerencias de amistad.
+    \item \textbf{Filtrado de contenido:} estimar la relevancia de publicaciones basándose en la estructura social y las interacciones previas.
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[every node/.style={circle, draw, minimum size=1cm}, scale=1.1]
+
+        % Nodos
+        \node[fill=yellow!30] (A) at (0,0) {Tú};
+        \node[fill=blue!20] (B) at (-2,1.5) {Fútbol};
+        \node[fill=blue!20] (C) at (2,1.5) {Fútbol};
+        \node[fill=blue!20] (D) at (-2,-1.5) {Fútbol};
+        \node[fill=red!20] (E) at (2,-1.5) {No};
+
+        % Aristas
+        \draw (A) -- (B);
+        \draw (A) -- (C);
+        \draw (A) -- (D);
+        \draw (A) -- (E);
+
+    \end{tikzpicture}
+    \caption*{
+    \textit{Fuente: Creacion propia}
+    }
+\end{figure}
+
+\vspace{0.5em}
+El nodo central representa a un usuario sin etiqueta conocida. Al estar conectado con tres amigos interesados en fútbol, una GCN puede predecir que probablemente él también comparta ese interés.
 
 \newpage 
 {\section{Ejemplo Demostrativo de GCN }} \vspace{10pt}
@@ -531,28 +625,18 @@ FALTA TRABAJAR
 
 \subsection*{e. Visualización y Análisis de Resultados}
 
-
-
+\newpage
+\section{Conclusión}
 
 \newpage
+\section{Referencias}
 \nocite{*}
 \printbibliography
 \newpage 
 \section{Anexos}
 \vspace{10pt}
-
-\subsection{Funciones de Activación}
-En el capítulo se mencionan varias funciones de activación usadas en redes neuronales. Aquí se muestra su definición matemática y gráfica:
-
-\begin{itemize}
-    \item \textbf{ReLU:} \(\text{ReLU}(x) = \max(0, x)\)
-    \item \textbf{Sigmoide:} \(\sigma(x) = \frac{1}{1 + e^{-x}}\)
-    \item \textbf{Tangente hiperbólica:} \(\tanh(x) = \frac{e^{x} - e^{-x}}{e^{x} + e^{-x}}\)
-\end{itemize}
-
-\vspace{10pt}
-
-\subsection{Ejemplo de Cálculo de Propagación hacia Adelante}
+\subsection{Anexo A: Glosario de Términos y Conceptos Adicionales}
+\subsubsection{Ejemplo de Cálculo de Propagación hacia Adelante}
 Dado un vector de entrada \(x = [0.5, -0.3]\), pesos \(W\) y sesgo \(b\):
 
 \[
@@ -618,11 +702,42 @@ y = \text{ReLU}\left(
 
 ---
 
-\subsection{Glosario de Términos}
+\subsubsection{Glosario de Términos}
+\begin{description}
+    \item[\textbf{Algoritmo de Optimización}] Método matemático utilizado para minimizar o maximizar una función objetivo, comúnmente la función de pérdida en machine learning.
+    
+    \item[\textbf{Batch}] Subconjunto de datos de entrenamiento que se procesa simultáneamente durante una iteración del algoritmo de entrenamiento.
+    
+    \item[\textbf{Cross-validation (Validación Cruzada)}] Técnica estadística para evaluar la capacidad de generalización de un modelo dividiendo los datos en múltiples particiones.
+    
+    \item[\textbf{Dropout}] Técnica de regularización que consiste en desactivar aleatoriamente algunas neuronas durante el entrenamiento para prevenir el sobreajuste.
+    
+    \item[\textbf{Epoch}] Una pasada completa a través de todo el conjunto de datos de entrenamiento.
+    
+    \item[\textbf{Feature Engineering}] Proceso de selección, modificación o creación de variables (features) a partir de datos en bruto para mejorar el rendimiento del modelo.
+    
+    \item[\textbf{Gradient Descent}] Algoritmo de optimización iterativo usado para encontrar el mínimo de una función calculando sus gradientes.
+    
+    \item[\textbf{Hiperparámetros}] Parámetros de configuración del modelo que se establecen antes del entrenamiento y no se aprenden automáticamente.
+    
+    \item[\textbf{Learning Rate (Tasa de Aprendizaje)}] Hiperparámetro que controla qué tan grande es el paso que da el algoritmo en cada iteración hacia el mínimo de la función de pérdida.
+    
+    \item[\textbf{Overfitting (Sobreajuste)}] Fenómeno donde el modelo aprende demasiado bien los datos de entrenamiento pero falla al generalizar a datos nuevos.
+    
+    \item[\textbf{Underfitting (Subajuste)}] Situación donde el modelo es demasiado simple para capturar la estructura subyacente de los datos.
+\end{description}
+\subsection{Funciones de Activación Adicionales}
+
+Además de las funciones mencionadas en el documento principal, existen otras funciones de activación relevantes:
+
 \begin{itemize}
-    \item \textbf{Epoch:} Una pasada completa por todo el conjunto de datos durante el entrenamiento.
-    \item \textbf{Batch:} Subconjunto del dataset usado en una iteración de entrenamiento.
-    \item \textbf{Overfitting:} Cuando el modelo aprende demasiado bien los datos de entrenamiento y falla en generalizar.
+    \item \textbf{Leaky ReLU}: Variante de ReLU que permite un pequeño gradiente cuando la entrada es negativa: $f(x) = \max(0.01x, x)$
+    
+    \item \textbf{ELU (Exponential Linear Unit)}: $f(x) = \begin{cases} x & \text{si } x > 0 \\ \alpha(e^x - 1) & \text{si } x \leq 0 \end{cases}$
+    
+    \item \textbf{Swish}: Función autodescubierta por Google: $f(x) = x \cdot \sigma(x)$, donde $\sigma$ es la función sigmoide.
+    
+    \item \textbf{Softmax}: Utilizada en la capa de salida para problemas de clasificación multiclase: $f(x_i) = \frac{e^{x_i}}{\sum_{j=1}^{K} e^{x_j}}$
 \end{itemize}
 \end{document}
 

@@ -37,7 +37,7 @@
 
 
 %Esto cambia el color del fondo
-\pagecolor{gray!20} %Cambia este color de las paginas
+\pagecolor{white} %Cambia este color de las paginas
 \color{black} %Cambia el color del texto
 
 
@@ -56,15 +56,21 @@
         {\Large Escuela de Informática} \\[20pt]
         {\Large \textbf{Redes Neuronales de Grafos (GNNs)}} \\[20pt]
         {\Large Curso: Estructuras Discretas} \\[20pt]
+        
         {\Large \textbf{Estudiantes a cargo de la investigación:}} \\[10pt]
-        {\large Sebastián Garro Granados \\ Joel Brenes Vargas \\ Santiago Jesús Hernández Chaves \\ Efraín Ignacio Retana Segura} \\[20pt]
-        {\Large \textbf{Profesor a cargo del curso:}} \\[15pt]
-        {\large Carlos Loría-Sáenz} \\[120pt]
-        {\Large \textbf{Fecha:}} \\[15pt]
-        {\large 17 de abril de 2025}
+        {\large Sebastián Garro Granados \\ Joel Brenes Vargas \\ Efraín Ignacio Retana Segura} \\[20pt]
+        
+        {\Large \textbf{Profesor a cargo del curso:}} \\[10pt]
+        {\large Carlos Loría-Sáenz} \\[20pt]
+        
+        {\Large \textbf{NRC:} 41358} \\[5pt]
+        {\Large \textbf{Grupo:} 02 – 10:00 a.m.} \\[100pt]
+        
+        {\Large \textbf{Fecha:} 16 de mayo de 2025}
     \end{center}
     \end{spacing}
 \end{titlepage}
+    
 
 % RESUMEN
 \newpage
@@ -73,82 +79,204 @@
 
 Este trabajo presenta una investigación introductoria sobre las redes neuronales de grafos (GNNs, por sus siglas en inglés), una combinación de teoría de grafos y aprendizaje automático que ha ganado gran relevancia en la última década. En particular, se investigó una arquitectura específica: las Graph Convolutional Networks (GCNs), las cuales permiten extender los mecanismos de redes neuronales convolucionales (CNNs) al dominio no estructurado de los grafos. Este enfoque resulta útil en aplicaciones donde los datos tienen relaciones o estructuras subyacentes representables mediante nodos y aristas.
 
-El objetivo principal de esta investigación es ofrecer un marco conceptual básico que permita a estudiantes del curso EIF203 Estructuras Discretas comprender los fundamentos de las GNNs y vincularlos con los contenidos vistos en clase, especialmente los relacionados con grafos y su programación en Python. Para lograrlo, el trabajo incluye una revisión teórica sobre el aprendizaje supervisado con redes neuronales, conceptos fundamentales de grafos, y una justificación del uso de GNNs frente a modelos tradicionales.
+El objetivo principal de esta investigación es ofrecer una entrada para que se pueda comprender los fundamentos de las GNNs y vincularlos con los contenidos vistos en clase, especialmente los relacionados con grafos y su programación en Python. Para lograrlo, el trabajo incluye una revisión teórica sobre el aprendizaje supervisado con redes neuronales, conceptos fundamentales de grafos, y una justificación del uso de GNNs frente a modelos tradicionales.
 
-Como parte del desarrollo, se presentan ejemplos demostrativos en Python donde se implementa un modelo básico de GCN para resolver una tarea de clasificación de nodos. Estos ejemplos utilizan bibliotecas especializadas y están diseñados para reforzar los aspectos técnicos tratados en el documento. Además, se hace uso de herramientas como GitHub para la gestión del código fuente, Overleaf para la documentación técnica, y entornos de desarrollo compatibles con bibliotecas de aprendizaje profundo.
+Como parte del desarrollo, se presentan ejemplos demostrativos en Python donde se implementa un ejemplo basico de GCN para resolver una tarea de clasificación de nodos. Estos ejemplos utilizan bibliotecas especializadas y están diseñados para reforzar los aspectos técnicos tratados en el documento. Además, se hace uso de herramientas como GitHub para la gestión del demo, extras y el propio documento de la investigación, Overleaf para la documentación , y entornos de desarrollo compatibles con bibliotecas de aprendizaje profundo.
 
-El informe final busca no solo cumplir con los requerimientos del curso, sino también proporcionar al lector una puerta de entrada clara, aplicada y documentada al mundo de las redes neuronales de grafos.
+El informe final busca no solo cumplir con los requerimientos de la investigación, sino también ofrecer una pequeña muestra del gran potencial que representan las GNNs en el campo de la inteligencia artificial moderna.
 
 \vspace{5pt}
-\textbf{Palabras clave:} grafos, redes neuronales, GNN, GCN, aprendizaje automático, aprendizaje supervisado, estructuras discretas, Python,nodos, clasificación de nodos.
+\textbf{Palabras clave:} grafos, redes neuronales, GNN, GCN, aprendizaje automático, aprendizaje supervisado,Python,nodos, clasificación de nodos.
 
 \newpage
 \tableofcontents
 \listoftables
 \listoffigures
 \newpage
-\section{{Introducción}}
+\section{Introducción}
 \vspace{5pt}
-\subsection{Motivación y Justificación: }
-\vspace{3pt}
-Las Redes Neuronales de Grafos (GNNs) representan una clase de modelos de aprendizaje automático diseñados específicamente para trabajar con grafos. Entre ellas, las Redes Convolucionales sobre Grafos (GCN) han ganado relevancia por su capacidad para procesar directamente la información estructurada en forma de grafo, permitiendo mejorar tareas como la clasificación y la predicción en contextos donde las relaciones entre datos son fundamentales. 
 
-Este trabajo tiene como objetivo analizar el funcionamiento de las GNNs, con énfasis en las GCN, además se va a explorar sus aplicaciones prácticas, particularmente en redes sociales y sistemas de recomendación. Se busca demostrar cómo estas redes pueden aprovechar tanto las características individuales de los nodos como la estructura del grafo para ofrecer soluciones más eficientes y precisas en problemas complejos. 
+\subsection{Motivación y Justificación}
+\vspace{1pt}
+Las Redes Neuronales de Grafos (GNNs) son modelos de aprendizaje profundo hechos para datos con estructura de grafo, donde la relación entre elementos es igual de importante como sus características individuales. Las Redes Convolucionales sobre Grafos (GCNs) aplican operaciones de agregación local en vecindarios de nodos, permitiendo la integración eficiente de información estructural y de atributos, lo que mejora significativamente el desempeño en tareas complejas como clasificación, detección de comunidades y sistemas de recomendación.
+
+Este trabajo analiza el funcionamiento de las GNNs, con especial énfasis en las GCNs, y explora sus aplicaciones en contextos donde la estructura relacional y las dependencias entre datos son fundamentales, como es el caso de las redes sociales y otros sistemas dinámicos.
+
 \vspace{5pt}
-\subsection{Objetivo general:}
-\vspace{3pt}
- Analizar el funcionamiento y las posibles aplicaciones de las GNNs, en particular las Redes Convolucionales sobre Grafos (GCN), explorando los fundamentos teóricos de las Redes Neuronales y de los grafos, además de su arquitectura matemática y su uso en contextos reales como lo son las redes sociales.
- \vspace{5pt}
-\subsection{Objetivos específicos:}
-\vspace{3pt}
-    1. Describir conceptos teóricos de las redes neuronales y de los grafos. 
+\subsection{Objetivo general}
+\vspace{1pt}
+Analizar el funcionamiento y aplicaciones de las GNNs, enfocándose en el modelo GCN, abordando tanto sus fundamentos teóricos como su uso práctico en escenarios reales de datos estructurados.
 
-    2. Explicar el modelo de propagación de las GCN, detallando el proceso de agregación, normalización y transformación de características. 
-
-    3. Implementar un modelo GCN sobre un conjunto de datos estructurado, y analizarlo. 
-
-    4. Comparar el rendimiento del modelo GCN con métodos tradicionales de clasificación en grafos. 
-
-    Explorar aplicaciones prácticas de las GCN en contextos como redes sociales, detección de comunidades y sistemas de recomendación. 
 \vspace{5pt}
-\subsection{Alcances del estudio:}
-\vspace{3pt}
-    El presente estudio aborda las redes neuronales de grafos, con énfasis en el modelo de redes convolucionales sobre grafos (GCN). Se detallan a continuación los alcances específicos: 
+\subsection{Objetivos específicos}
+\vspace{-3pt}
+\begin{itemize}\setlength\itemsep{0pt}
+    \item Describir los conceptos teóricos fundamentales sobre redes neuronales y grafos.
+    \item Explicar el mecanismo de propagación y agregación de información en las GCNs.
+    \item Implementar una GCN aplicada a un conjunto de datos estructurado en forma de grafo.
+    \item Comparar el rendimiento de las GCNs frente a métodos tradicionales de clasificación.
+    \item Explorar aplicaciones prácticas de las GCNs en redes sociales y sistemas de recomendación.
+\end{itemize}
 
-    Se presentará un análisis teórico de los fundamentos de las GNNs y el funcionamiento de las GCN, incluyendo los elementos matemáticos esenciales. 
+\vspace{5pt}
+\subsection{Alcances del estudio}
+\vspace{-3pt}
+\begin{itemize}\setlength\itemsep{0pt}
+    \item Presentar un marco teórico claro y detallado de las GNNs y GCNs.
+    \item Describir el proceso de propagación de información en grafos y la importancia de la estructura de la red.
+    \item Implementar una GCN funcional utilizando librerías como PyTorch Geometric o NetworkX.
+    \item Evaluar la aplicabilidad y ventajas del modelo en entornos con datos parciales o relaciones complejas.
+\end{itemize}
 
-    Se explorará el proceso de propagación de información en grafos, haciendo énfasis en la agregación de características entre nodos y el uso de pesos compartidos. 
+\vspace{5pt}
+\subsection{Extras}
+\vspace{-3pt}
+Se desarrollaron dos extras, cuyos códigos están disponibles en repositorios de GitHub, accesibles para el profesor (usuario: \texttt{CarlosLoriaSaenz}):
 
-    Se realizará una implementación funcional de una GCN en un entorno de programación (por ejemplo: PyTorch Geometric, NetworkX), aplicándola a un conjunto de datos estructurado en forma de grafo. 
+\begin{itemize}\setlength\itemsep{1pt}
+    \item \textbf{Clasificador MNIST Superpixels:}  
+    Clasificador basado en GNN entrenado con el dataset MNIST Superpixels, que convierte imágenes en grafos para su análisis estructurado. Código en:  
+    \url{https://github.com/Pachaconjettt/Discretas_pt2}
 
-    Finalmente, se revisarán las posibles aplicaciones del modelo en las redes sociales, justificando la pertinencia de usar GCN en contextos donde la información es parcial o incompleta. 
+    \item \textbf{GCN con Dataset Cora:}  
+    Implementación de una GCN con PyTorch Geometric para la clasificación de artículos científicos, considerando las relaciones de citación entre ellos. Código en:  
+    \url{https://github.com/7joelb/Extra-GCN-DIscretas}
+\end{itemize}
+
+
+% Si no llevas extras, simplemente reemplaza el contenido de la subsección por:
+% "No se incluyeron extras en esta investigación."
+
 \newpage
-{\section{Conceptos de Grafos y sus Aplicaciones}}
-\subsection{Definiciones:}
-Vértice = Nodo: Entidad de un mundo de estudio dado 
+\section{Conceptos de Grafos y sus Aplicaciones}
 
-Arco = Arista: Asociación o relación entre vértices.
+\subsection{Definiciones}
+\begin{itemize}
+ \item \textbf{Vértice (Nodo)}: Entidad de un mundo de estudio dado.
+ \item \textbf{Arco (Arista)}: Asociación o relación entre vértices.
+ \item \textbf{Grafos simples}: No hay dobles arcos entre dos vértices ni lazos.
+ \item \textbf{Multigrafo}: Grafo que sí permite dobles arcos, pero no lazos.
+ \item \textbf{Seudografos}: Multigrafo con lazos.
+ \item \textbf{Grafos dirigidos}: Grafos donde los arcos tienen una dirección.
+\end{itemize}
+\noindent (Definiciones tomadas de~\cite{carlosloria})
 
-Grafos simples: no hay dobles arcos entre dos vértices ni lazos.
+\subsection{Representaciones}
 
-Multigrafo: Grafo que si permite dobles arcos, pero no lazos.
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[
+    nodo/.style={circle, draw=blue, fill=blue!70, minimum size=8mm, inner sep=0pt},
+    edge/.style={draw=red, thick},
+    every node/.style={font=\small\bfseries, text=blue}
+]
 
-Seudo grafos: Multigrafo con lazos.
+% Nodos (posición aproximada)
+\node[nodo, label=left:1] (1) at (0,1) {};
+\node[nodo, label=left:2] (2) at (0,0) {};
+\node[nodo, label=above:3] (3) at (1,1.5) {};
+\node[nodo, label=right:4] (4) at (1,0.5) {};
+\node[nodo, label=below:5] (5) at (2,0) {};
+\node[nodo, label=below:6] (6) at (3,0) {};
+\node[nodo, label=above:7] (7) at (3,1) {};
+\node[nodo, label=above:8] (8) at (2,1) {};
 
-Grafos dirigidos: Grafos donde los arcos tienen una dirección.
-Esto se lo robe al gran:~\cite{carlosloria}
-\vspace{5pt}
-    
-\subsection{Representaciones }
-Fotos de grafos sexy buscar
-\subsection{Métricas Comunes }
-Epic sigmas 2025
-\subsection{Aplicaciones }
-i. Redes Sociales: 
+% Aristas
+\draw[edge] (1) -- (2);
+\draw[edge] (1) -- (3);
+\draw[edge] (2) -- (4);
+\draw[edge] (3) -- (4);
+\draw[edge] (4) -- (5);
+\draw[edge] (4) -- (8);
+\draw[edge] (5) -- (6);
+\draw[edge] (6) -- (7);
+\draw[edge] (7) -- (8);
 
-ii. Grafos de Conocimiento: 
+\end{tikzpicture}
+\caption{Representación gráfica de un grafo no dirigido. Fuente: Elaboración propia}
+\end{figure}
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[scale=1, every node/.style={scale=1.3}]
+\tikzstyle{nodo}=[
+    circle,
+    draw=blue,
+    fill=blue,
+    inner sep=0pt,
+    minimum size=8mm % Tamaño de nodo
+]
+\tikzstyle{rededge}=[-, thick, red]
+\tikzstyle{greenedge}=[-, thick, olive]
 
-iii. Grafos de Citaciones: 
+% Nodos
+\node[nodo, label=left:1] (1) at (0,2) {};
+\node[nodo, label=left:2] (2) at (0,0) {};
+\node[nodo, label=above:3] (3) at (3,3) {};
+\node[nodo, label=right:4] (4) at (3,1) {};
+
+% Aristas verdes
+\draw[greenedge, bend left=15] (1) to (3);
+\draw[greenedge, bend left=15] (1) to (2);
+\draw[greenedge, bend left=15] (2) to (4);
+\draw[greenedge, bend left=15] (3) to (4);
+
+% Aristas rojas
+
+\draw[rededge, bend left=15] (2) to (1);
+\draw[rededge, bend left=15] (4) to (2);
+
+
+\end{tikzpicture}
+\caption{Representación gráfica de un multigrafo. Fuente: Elaboración propia}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[->, >=Stealth, node distance=2cm, thick]
+    \tikzstyle{every node}=[circle, draw, fill=blue!20, minimum size=1cm]
+
+    \node (A) {A};
+    \node (B) [right of=A] {B};
+    \node (C) [below of=A] {C};
+    \node (D) [right of=C] {D};
+    \node (E) [below of=D] {E};
+
+    \draw (A) -- (B);
+    \draw (A) -- (C);
+    \draw (B) -- (D);
+    \draw (C) -- (D);
+    \draw (D) -- (E);
+\end{tikzpicture}
+\caption{Representación gráfica de un grafo dirigido. Fuente: Elaboración propia}
+\end{figure}
+
+\subsection{Métricas Comunes}
+Estas son algunas de las métricas de los grafos que se suelen usar en el campo de \textit{Machine Learning} y \textit{Neural Networks}:
+\begin{itemize}
+    \item \textbf{Grado (Degree)}: Número de conexiones que tiene un nodo.
+    \item \textbf{Camino (Path)}: Secuencia de nodos conectados mediante aristas.
+    \item \textbf{Centralidad (Centrality)}: Mide la importancia de un nodo dentro de la red.
+    \begin{itemize}
+        \item \textbf{Centralidad de grado (Degree Centrality)}: Basada en el número de conexiones directas del nodo.
+        \item \textbf{Centralidad de intermediación (Betweenness Centrality)}: Basada en la cantidad de caminos más cortos que pasan por un nodo.
+        \item \textbf{Centralidad de cercanía (Closeness Centrality)}: Inversa de la suma de las distancias desde el nodo a todos los demás nodos.
+    \end{itemize}
+    \item \textbf{Coeficiente de agrupamiento (Clustering Coefficient)}: Mide qué tan interconectados están los vecinos de un nodo. 
+\end{itemize}
+\noindent (Definiciones tomadas de~\cite{mayo2025network})
+
+\subsection{Aplicaciones}
+\begin{itemize}
+   
+\item \textbf{Redes Sociales}:
+    El uso de grafos en redes sociales es esencial, ya que nos permite transformar interacciones humanas en datos estructurados en grafos, lo cual permite analizarlas usando teoría de grafos, lo cual ayuda a mejorar experiencias de usuario, prevenir riesgos y entender fenómenos sociales complejos. 
+    Según \cite{oracle2024graph}: "Las bases de datos orientadas a grafos se pueden usar en muchos escenarios diferentes, pero normalmente se utilizan para analizar redes sociales. De hecho, las redes sociales son el caso de uso ideal, ya que en ellas intervienen un gran volumen de nodos (cuentas de usuario) y conexiones multidimensionales (interacciones en muchas direcciones diferentes)." Lo cual demuestra el gran poder que nos da el uso de grafos en redes sociales, ya que al estar tantas personas conectadas acelera el análisis de datos y permite un nivel de eficiencia extremadamente alto.
+\item \textbf{Grafos de Conocimiento}:
+Los grafos de conocimiento son un tipo de grafos que organizan datos interconectados para representar conocimiento de manera semántica, contextual y comprensible no solo para humanos, también para sistemas inteligentes. En vez de almacenar información de forma aislada, conectan entidades (como personas, lugares, conceptos) mediante relaciones que reflejan su significado y contexto. Esto permite mejorar la comprensión automática del lenguaje, realizar inferencias lógicas y ofrecer respuestas más precisas en aplicaciones como buscadores, asistentes virtuales o sistemas de recomendación. 
+
+Según \cite{ibm_knowledge_graph} “un grafo de conocimiento organiza datos interconectados que, juntos, proporcionan una comprensión más rica del significado detrás de la información”, basándonos en esto, se puede ver que los grafos de conocimiento facilitan la toma de decisiones basadas en datos estructurados e interpretables. Gracias a esta capacidad de conectar información dispersa y estructurarla de forma inteligente, los grafos de conocimiento son una herramienta clave para el desarrollo de inteligencia artificial y la transformación digital en múltiples sectores. 
+\end{itemize}
+
 \newpage
 {\section{Conceptos Básicos de ML usando Redes Neuronales (NNs)}} \vspace{10pt}
 
@@ -373,9 +501,10 @@ En términos generales, una red neuronal está compuesta por un conjunto de unid
 \caption{Estructura típica de una red neuronal, que incluye la capa de entrada, varias capas ocultas y la capa de salida. \textit{Fuente: Elaboración propia.}}
     \label{fig:red-neuronal-tikz}
 \end{figure}
+Ver Anexo A para información complementaria.
 \subsubsection{ii. Inferencia por propagación hacia adelante}
 La propagación hacia adelante (\textit{forward propagation}) es el proceso por el que una red neuronal transforma los datos de entrada en predicciones o salidas (\cite{datacamp_redes}). En términos técnicos, es el cálculo secuencial que mueve los datos desde la capa de entrada, a través de las capas ocultas y, finalmente, a la capa de salida (\cite{nvidia}). Durante este recorrido, los datos se transforman mediante conexiones ponderadas y funciones de activación, lo que permite a la red captar patrones complejos. \\
-La importancia de la propagación hacia adelante radica en que es el mecanismo principal por el cual el modelo genera sus predicciones basadas en los parámetros que ha aprendido durante el entrenamiento que se le da. Sin este proceso, no sería posible evaluar cómo se comporta la red ante nuevos datos sin medir su desempeño. Además, la propagación hacia adelante es esencial para calcular la función de pérdida, que es la medición de los errores entre las predicciones y los valores reales. Esta información es usada posteriormente durante la retropropagación  para ajustar los pesos de la red y mejorar su precisión.
+La importancia de la propagación hacia adelante radica en que es el mecanismo principal por el cual el modelo genera sus predicciones basadas en los parámetros que ha aprendido durante el entrenamiento que se le da. Sin este proceso, no sería posible evaluar cómo se comporta la red ante nuevos datos sin medir su desempeño. Además, la propagación hacia adelante es esencial para calcular la función de pérdida, que es la medición de los errores entre las predicciones y los valores reales. Esta información es usada posteriormente durante la retropropagación  para ajustar los pesos de la red y mejorar su precisión. Para más detalles, consulte el Anexo A.
 \begin{figure}[H]
     \centering
     \scalebox{0.8}{
@@ -474,7 +603,7 @@ Las redes neuronales de grafos (GNN) han ampliado las posibilidades en el recono
 \newpage
 {\section{Fundamentos y justificación de GNNs}} 
 \vspace{5pt}
-Las \textbf{Redes neuronales de Grafos} (GNNs, por sus siglas en inglés) son una clase de modelos diseñados específicamente para trabajar con datos estructurados como grafos (\cite{hui2021gnn}). Estos modelos extienden la capacidad de las redes neuronales tradicionales al considerar explícitamente la estructura de conexiones entre elementos, permitiendo aprender representaciones útiles de nodos, aristas y del grafo completo. Se han vuelto fundamentales en tareas que involucran relaciones complejas, como redes sociales, conocimiento biomecular, sistemas de recomendación, y más.
+Las \textbf{Redes neuronales de Grafos} (GNNs, por sus siglas en inglés) son una clase de modelos diseñados específicamente para trabajar con datos estructurados como grafos (\cite{hui2021gnn}). Estos modelos extienden la capacidad de las redes neuronales tradicionales al considerar explícitamente la estructura de conexiones entre elementos, permitiendo aprender representaciones útiles de nodos, aristas y del grafo completo. Se han vuelto fundamentales en tareas que involucran relaciones complejas, como redes sociales, conocimiento biomecular, sistemas de recomendación, y más. Para más detalles, consulte el Anexo B.
 \vspace{3pt}
 \subsection{a. Definiciones Básicas} 
 Un \textbf{grafo} $G = (V, E)$ está compuesto por un conjunto de nodos (vértices) $V$ y un conjunto de aristas (enlaces) $E \subseteq V \times V$. En muchos contextos, tanto los nodos como las aristas están asociados a vectores de características. Por ejemplo, en un grafo de usuarios, cada nodo puede representar a un usuario con atributos como edad, ubicación e intereses, y cada arista puede representar una amistad o interacción.
@@ -525,7 +654,7 @@ Estas limitaciones motivaron el desarrollo de arquitecturas especializadas como 
 Con el fin de superar las limitaciones estructurales que presentan los grafos para arquitecturas tradicionales, se han propuesto diversas variantes de redes neuronales de grafos. A continuación se describen tres de las más representativas:
     
 \subsubsection{i. Graph Convolutional Networks (GCNs)}
-Las GCNs extienden la operación de convolución a grafos, utilizando una matriz de adyacencia normalizada para propagar información entre nodos. Cada nodo actualiza su representación combinando sus características con las de sus vecinos. Este enfoque ha sido ampliamente aplicado en tareas como la clasificación de nodos, la predicción de enlaces y la detección de comunidades. No obstante, su capacidad se ve limitada por el problema del \textit{oversmoothing}, que ocurre cuando muchas capas hacen que las representaciones de los nodos se vuelvan demasiado similares (\cite{kipf2016semi}).
+Las GCNs extienden la operación de convolución a grafos, utilizando una matriz de adyacencia normalizada para propagar información entre nodos. Cada nodo actualiza su representación combinando sus características con las de sus vecinos. Este enfoque ha sido ampliamente aplicado en tareas como la clasificación de nodos, la predicción de enlaces y la detección de comunidades. No obstante, su capacidad se ve limitada por el problema del \textit{oversmoothing}, que ocurre cuando muchas capas hacen que las representaciones de los nodos se vuelvan demasiado similares (\cite{kipf2016semi}). ver más en Anexo B.
 
 \subsubsection{ii. Graph Attention Networks (GATs)}
 Las GATs incorporan un mecanismo de atención que permite a cada nodo ponderar de forma diferenciada la información proveniente de sus vecinos. A través de coeficientes de atención aprendibles, el modelo decide qué nodos vecinos son más relevantes para la actualización del estado del nodo central. Este enfoque ha demostrado ventajas en grafos con relaciones heterogéneas o asimétricas, como los de conocimiento o redes sociales (\cite{dgl2024gat}).
@@ -597,21 +726,19 @@ GraphSAGE es un modelo inductivo que permite generalizar a nodos no vistos duran
 \caption{Ejemplo del mecanismo de atención en Graph Attention Networks (GAT). El modelo calcula scores de atención $e_{ij}$ entre nodos, los normaliza usando softmax para obtener coeficientes $\alpha_{ij}$, y luego pondera las características de los nodos vecinos según su relevancia. Fuente: Adaptado de \textit{Understand Graph Attention Network — DGL 2.0.0 documentation}.}
 \label{fig:gat_example}
 \end{figure}
-Cada una de estas variantes ofrece distintas fortalezas dependiendo del tipo de grafo, la disponibilidad de datos y los requisitos de escalabilidad o generalización del problema abordado.
 \newpage 
 \section{Caso de Estudio GCN} \vspace{10pt}
 
 \subsection{a. Definición y Justificación}
 
-Una Red Convolucional sobre Grafos (GCN, por sus siglas en inglés) es un tipo de red neuronal diseñada para trabajar directamente con estructuras en forma de grafo. A diferencia de las redes tradicionales, que esperan como entrada datos organizados en forma de vectores o matrices (como las imágenes o secuencias), las GCN pueden procesar datos cuya forma natural es un conjunto de nodos conectados por relaciones, como ocurre en redes sociales, mapas de relaciones científicas o redes biológicas.
+Una Red Convolucional sobre Grafos (GCN, por sus siglas en inglés) es un tipo de red neuronal diseñada para trabajar directamente con estructuras en forma de grafo. A diferencia de las redes tradicionales, que esperan como entrada datos organizados en forma de vectores o matrices (como las imágenes o secuencias), las GCN pueden procesar datos cuya forma natural es un conjunto de nodos conectados por relaciones, como ocurre en redes sociales, mapas de relaciones científicas o redes biológicas (\cite{zhou2020graph, bronstein2017geometric}).
 
 Las GCN fueron propuestas por Thomas Kipf y Max Welling en 2016 (\cite{kipf2016semi}), como una solución para tareas como la clasificación de nodos dentro de un grafo, especialmente en situaciones donde no todos los nodos tienen etiquetas conocidas. Lo innovador de este modelo es que puede aprender a predecir etiquetas utilizando tanto las características de cada nodo como la estructura de conexiones entre ellos, sin necesidad de transformar el grafo en una estructura lineal.
 
 Esto es especialmente útil en problemas donde solo se conoce la clase o etiqueta de algunos pocos nodos, ya que la GCN puede aprovechar las conexiones del grafo para extender esa información a los demás nodos. Además, las GCN permiten realizar este proceso de forma eficiente, utilizando operaciones simples pero efectivas que se pueden aplicar directamente sobre la estructura del grafo.
-
 \subsection{b. Características Distintivas}
 
-Las GCN tienen varias propiedades clave que las hacen diferentes a otros modelos de aprendizaje automático. A continuación se explican junto con un ejemplo ilustrativo basado en una red de recomendación de películas:
+Las GCN tienen varias propiedades clave que las hacen diferentes a otros modelos de aprendizaje automático (\cite{wu2020comprehensive}). A continuación se explican junto con un ejemplo ilustrativo basado en una red de recomendación de películas:
 
 \begin{itemize}
     \item \textbf{Agregación de información local:} en cada capa, un nodo combina su información con la de sus vecinos directos. Por ejemplo, si una persona no ha indicado sus gustos de películas, pero sus amigos sí lo han hecho, se puede usar esa información para inferir qué películas le podrían gustar.
@@ -649,7 +776,7 @@ En la Figura, el nodo central representa a una persona la cual se desconoce su g
 
 \subsection{c. Modelo de Propagación}
 
-El modelo de propagación define cómo se actualizan las representaciones de los nodos usando tanto sus características como las conexiones en el grafo. Esto se hace combinando dos elementos: la matriz de adyacencia (que indica quién está conectado con quién) y la matriz de características (que guarda los datos de cada nodo).
+El modelo de propagación define cómo se actualizan las representaciones de los nodos usando tanto sus características como las conexiones en el grafo (\cite{kipf2016semi, hamilton2017inductive}).
 
 \subsubsection{i. Features}
 
@@ -696,7 +823,7 @@ El término $\hat{D}^{-1/2} \hat{A} \hat{D}^{-1/2}$ realiza una \textit{normaliz
 
 Para construir la matriz $\hat{D}$, se calcula la suma de cada fila de $\hat{A}$ y se coloca ese valor en la diagonal correspondiente. De esta forma, $\hat{D}_{ii} = \sum_j \hat{A}_{ij}$. El objetivo de esta normalización es evitar que los nodos con muchos vecinos dominen el proceso de agregación, manteniendo un equilibrio entre la influencia de todos los nodos.
 
-La función $\sigma$ representa una activación no lineal que se aplica después de la agregación y la transformación lineal. En las capas ocultas se suele usar la función ReLU, que introduce no linealidad al modelo. En la capa final, si el problema es de clasificación, se utiliza la función softmax para obtener una distribución de probabilidades sobre las posibles clases.
+La función $\sigma$ representa una activación no lineal que se aplica después de la agregación y la transformación lineal. En las capas ocultas se suele usar la función ReLU, que introduce no linealidad al modelo. En la capa final, si el problema es de clasificación, se utiliza la función softmax para obtener una distribución de probabilidades sobre las posibles clases. Ver Anexo C para información complementaria.
 
 \subsection{d. Agregación de Features y Transformación de Nodos}
 
@@ -717,67 +844,190 @@ Este proceso se repite en múltiples capas. Con cada nueva capa, el nodo incorpo
 
 \subsubsection{i. Redes Sociales}
 
-Las redes sociales digitales, como Facebook, Twitter o Instagram, pueden modelarse naturalmente como grafos, donde cada nodo representa a un usuario y cada arista representa una relación social, como amistad, seguimiento o interacción frecuente. Esta estructura gráfica permite aplicar modelos GCN para realizar diversas tareas que requieren entender tanto las características de los usuarios como su posición dentro de la red.
+Las GCN se han utilizado exitosamente en dominios como redes sociales, biología computacional y sistemas de recomendación (\cite{zhou2020graph}). Por ejemplo, en redes sociales es común aplicar GCNs para tareas como la predicción de intereses, la detección de comunidades o la recomendación de contenido.
 
-Una aplicación común es la \textit{clasificación de usuarios}, donde se desea predecir intereses, grupos a los que pertenece una persona o su probabilidad de interactuar con ciertos contenidos. Las GCN permiten usar no solo los datos propios de cada usuario (como sus publicaciones, gustos o edad), sino también los datos de sus amigos o contactos cercanos. Esto es especialmente útil cuando un usuario tiene poca información disponible: su vecindad en el grafo puede ser suficiente para hacer una predicción.
+Una aplicación frecuente es la \textit{clasificación de usuarios}, donde se busca predecir intereses, grupos a los que pertenece una persona o su probabilidad de interactuar con ciertos contenidos. Las GCN permiten usar no solo los datos directos de cada usuario (como su edad, gustos o historial de publicaciones), sino también la información de sus conexiones en la red, es decir, lo que hacen y comparten sus amigos o contactos cercanos. Esto es muy útil en casos donde el usuario no ha dado mucha información, ya que el modelo puede aprender a partir del comportamiento de su entorno.
 
-Otras aplicaciones incluyen:
+Por ejemplo, si una persona sigue a varias cuentas relacionadas con deportes, aunque no lo haya indicado directamente, el modelo puede predecir que le interesan esos temas. Esto permite personalizar recomendaciones de forma más precisa, incluso con poca información inicial.
+
+Además de la clasificación, las GCN también se usan en tareas como:
 
 \begin{itemize}
-    \item \textbf{Detección de comunidades:} identificar grupos densamente conectados que comparten características similares.
-    \item \textbf{Predicción de vínculos:} anticipar la aparición de nuevas relaciones entre usuarios, como sugerencias de amistad.
-    \item \textbf{Filtrado de contenido:} estimar la relevancia de publicaciones basándose en la estructura social y las interacciones previas.
+    \item \textbf{Detección de comunidades:} identificar grupos de usuarios que están muy conectados entre sí y comparten características o comportamientos similares. Esto es útil, por ejemplo, para analizar la dinámica de grupos dentro de una red social o para estudiar cómo se propagan ideas o contenidos.
+    
+    \item \textbf{Predicción de vínculos:} anticipar la aparición de nuevas conexiones entre usuarios, como sugerencias de amistad o seguidores recomendados. El modelo aprende a reconocer patrones en las relaciones existentes y puede predecir cuáles usuarios probablemente se conecten en el futuro.
+    
+    \item \textbf{Filtrado de contenido:} estimar qué publicaciones o elementos serán relevantes para cada usuario, basándose no solo en su historial, sino también en cómo interactúan otros usuarios similares. Esto mejora la experiencia al mostrar contenido más ajustado a los intereses reales del usuario.
+\end{itemize}
+
+Estas aplicaciones muestran cómo las GCN aprovechan tanto la información individual como la estructura de la red para hacer predicciones más completas y precisas. Gracias a esto, se han convertido en una herramienta valiosa para plataformas digitales que necesitan entender mejor a sus usuarios y cómo se relacionan entre sí. Ver Anexo C para información complementaria.
+
+
+\begin{figure}[H]
+    \centering
+    \begin{tikzpicture}[every node/.style={circle, draw, minimum size=1cm}, node distance=2cm]
+
+        \node[fill=yellow!30] (A) at (-2,0) {A};
+        \node[fill=yellow!30] (B) at (2,0) {B};
+
+        \node[fill=blue!20] (A1) at (-4,1.5) {};
+        \node[fill=blue!20] (A2) at (-4,0) {};
+        \node[fill=blue!20] (A3) at (-4,-1.5) {};
+
+        \node[fill=blue!20] (B1) at (4,1.5) {};
+        \node[fill=blue!20] (B2) at (4,0) {};
+        \node[fill=blue!20] (B3) at (4,-1.5) {};
+
+        \draw (A) -- (A1);
+        \draw (A) -- (A2);
+        \draw (A) -- (A3);
+
+        \draw (B) -- (B1);
+        \draw (B) -- (B2);
+        \draw (B) -- (B3);
+
+        \draw[dashed, thick] (A) -- (B);
+
+    \end{tikzpicture}
+    \caption*{Fuente: Creacion propia}
+    \vspace{0.5em}
+\end{figure}
+
+
+\vspace{0.5em}
+Ejemplo de predicción de vínculos. Aunque los usuarios A y B no están conectados directamente, sus redes de vecinos tienen una estructura muy parecida: ambos están conectados con otros nodos que tienen características similares en cantidad y patrón de conexión. Este tipo de similitud estructural puede ser detectada por una GCN al analizar las relaciones dentro del grafo.
+
+Gracias al proceso de propagación de información entre nodos, la GCN es capaz de notar que A y B tienen contextos parecidos, aunque no compartan un vínculo en el presente. A partir de esto, el modelo puede predecir que existe una alta probabilidad de que se genere una conexión entre ellos en el futuro, como podría ocurrir en una red social donde se recomienda amistad o seguimiento entre usuarios con intereses y contactos comunes.
+
+Este tipo de tarea es conocida como \textit{link prediction} y es muy útil, por ejemplo, para sugerencias de amistad en plataformas como Facebook o LinkedIn, donde se aprovechan patrones en la red de conexiones para anticipar nuevas relaciones.
+
+\begin{figure}[H]
+\centering
+\begin{tikzpicture}[
+    user/.style={circle, draw, fill=yellow!40, minimum size=1cm},
+    post/.style={rectangle, draw, fill=blue!20, minimum size=0.8cm},
+    edge/.style={thick},
+    scale=1
+]
+
+% Usuario
+\node[user] (U) at (0,0) {Usuario};
+
+% Publicaciones vistas
+\node[post] (P1) at (-3,1.5) {Post A};
+\node[post] (P2) at (-3,0) {Post B};
+\node[post] (P3) at (-3,-1.5) {Post C};
+
+% Publicaciones no vistas
+\node[post] (P4) at (3,1) {Post D};
+\node[post] (P5) at (3,-1) {Post E};
+
+% Conexiones usuario - publicaciones vistas
+\draw[edge] (U) -- (P1);
+\draw[edge] (U) -- (P2);
+\draw[edge] (U) -- (P3);
+
+% Conexiones entre posts (relaciones de contenido)
+\draw[dashed] (P1) -- (P4);
+\draw[dashed] (P2) -- (P4);
+\draw[dashed] (P3) -- (P5);
+
+\end{tikzpicture}
+\caption{Ejemplo de filtrado de contenido con GCN. Fuente: Creación propia}
+\label{fig:filtrado-contenido}
+\end{figure}
+
+Este ejemplo muestra cómo una GCN puede recomendar contenido a un usuario basándose en sus interacciones anteriores. Aunque el usuario no ha visto las publicaciones D y E, el modelo detecta que están relacionadas con otras que sí ha visto, y puede predecir que también serán de su interés. Este enfoque se usa comúnmente en sistemas de recomendación personalizados.
+
+
+
+
+
+\newpage
+\section{Ejemplo Demostrativo de GCN}
+\vspace{10pt}
+
+\subsection{a. Descripción del Problema (Clasificación de Nodos)} 
+En esta demostración se utiliza el dataset \textit{Zachary’s Karate Club}, un conjunto de datos clásico en el análisis de grafos y redes sociales. Este dataset representa la estructura social de un club de karate universitario que, tras un conflicto interno, se dividió en dos grupos: aquellos que permanecieron con el administrador del club, conocido como \textit{Mr. Hi}, y aquellos que se alinearon con otro miembro llamado \textit{John A.} (\textit{Officer}).
+
+Cada nodo en el grafo representa a un miembro del club, mientras que cada arista representa una relación de amistad entre dos miembros. El objetivo es realizar una clasificación de nodos, es decir, predecir a qué grupo (Mr. Hi u Officer) pertenece cada persona únicamente a partir de la estructura del grafo (las conexiones entre los miembros).
+
+Para ello, se emplea una \textbf{Red Neuronal Convolucional sobre Grafos (GCN)}. Esta GCN toma como entrada la estructura del grafo y propaga características entre los nodos mediante las aristas, permitiendo inferir correctamente la etiqueta de cada nodo.
+
+\subsection{b. Obtención del Dataset}
+Este dataset está incluido en la librería de Python \texttt{NetworkX}, la cual se encuentra preinstalada en distribuciones como Anaconda. En caso de ser necesario, se puede instalar con el comando:
+
+\begin{verbatim}
+pip install networkx[default]
+\end{verbatim}
+
+\subsection{c. Configuración de la GCN}
+Para implementar este modelo se requiere instalar las librerías \texttt{networkx}, \texttt{torch}, \texttt{collections} y \texttt{matplotlib} mediante:
+
+\begin{verbatim}
+pip install networkx matplotlib torch
+\end{verbatim}
+
+Una vez instaladas, se importa el grafo del dataset y se almacena como variable. También se obtiene el número de nodos (34 en este caso). Luego, se construye la matriz de adyacencia del grafo, su diagonal y su inversa, con el fin de crear la matriz de propagación.
+
+El modelo GCN definido consta de dos capas. La primera toma los vectores de entrada de 34 nodos, los propaga a través del grafo usando la matriz de propagación, y aplica una transformación lineal que lleva las características a un espacio de 64 dimensiones, seguida por una función de activación \texttt{ReLU} y una operación de \texttt{dropout} con tasa del 30\%.
+
+La segunda capa recibe las 64 dimensiones, realiza nuevamente la propagación, y aplica una transformación lineal a un espacio de salida de 2 dimensiones. No se utiliza \texttt{ReLU} ni \texttt{dropout} en esta capa, ya que corresponde a la salida final. Finalmente, se aplica la función \texttt{log softmax} para obtener probabilidades por clase.
+
+El entrenamiento se realiza con una función \texttt{train} que entrena el modelo durante 150 épocas utilizando únicamente 6 nodos etiquetados. En cada iteración, se calcula la pérdida (\texttt{loss}) usando \texttt{nll\_loss}, se actualizan los pesos con el optimizador \texttt{Adam}, y se monitorea el progreso imprimiendo la pérdida cada 50 épocas.
+
+\subsection*{d. Descripción del Algoritmo e Implementación en Python}
+La implementación del modelo GCN puede consultarse en el siguiente repositorio: 
+
+\begin{center}
+\texttt{\url{https://github.com/NashiAU/DemoDiscretas}}
+\end{center}
+
+\textbf{Descripción del algoritmo:} la GCN funciona propagando información entre nodos mediante la estructura del grafo. Primero, se normaliza la matriz de adyacencia añadiendo auto-conexiones y aplicando normalización simétrica. Luego, se define una red neuronal de dos capas: cada capa aplica una transformación lineal, seguida de una agregación de características vecinas mediante la multiplicación con la matriz de propagación y la activación \texttt{ReLU}. 
+
+Durante el entrenamiento, el modelo ajusta sus pesos usando únicamente un subconjunto de nodos etiquetados, aplicando aprendizaje semi-supervisado. Se emplea la función de pérdida \texttt{nll\_loss} y el optimizador \texttt{Adam}. Después de varias épocas, el modelo es capaz de generalizar y predecir correctamente la clase de la mayoría de nodos, incluso aquellos que no estaban etiquetados inicialmente.
+
+\subsection*{e. Visualización y Análisis de Resultados}
+Los resultados muestran cómo la GCN logra predecir correctamente el grupo al que pertenece cada persona, incluso usando solo 6 nodos etiquetados como ejemplo. Además, se observa cómo la pérdida disminuye progresivamente conforme se incrementa el número de épocas, lo que indica que el modelo está aprendiendo.
+
+A continuación, se presenta una comparación entre:
+\begin{itemize}
+  \item El grafo original con etiquetas reales.
+  \item La predicción inicial sin entrenamiento.
+  \item La predicción final tras el entrenamiento.
 \end{itemize}
 
 \begin{figure}[H]
     \centering
-    \begin{tikzpicture}[every node/.style={circle, draw, minimum size=1cm}, scale=1.1]
-
-        % Nodos
-        \node[fill=yellow!30] (A) at (0,0) {Tú};
-        \node[fill=blue!20] (B) at (-2,1.5) {Fútbol};
-        \node[fill=blue!20] (C) at (2,1.5) {Fútbol};
-        \node[fill=blue!20] (D) at (-2,-1.5) {Fútbol};
-        \node[fill=red!20] (E) at (2,-1.5) {No};
-
-        % Aristas
-        \draw (A) -- (B);
-        \draw (A) -- (C);
-        \draw (A) -- (D);
-        \draw (A) -- (E);
-
-    \end{tikzpicture}
-    \caption*{
-    \textit{Fuente: Creacion propia}
-    }
+    \includegraphics[width=0.9\linewidth]{Images/comparacionGCN.png}
+    \caption{Comparación entre el grafo real y las predicciones del modelo GCN}
+    \label{fig:comparacionGCN}
 \end{figure}
 
-\vspace{0.5em}
-El nodo central representa a un usuario sin etiqueta conocida. Al estar conectado con tres amigos interesados en fútbol, una GCN puede predecir que probablemente él también comparta ese interés.
-
-\newpage 
-{\section{Ejemplo Demostrativo de GCN }} \vspace{10pt}
-
-\subsection{a. Descripción del Problema (el esperado es una clasificación de nodos)} 
-
-
-
-\subsection{b. Obtención del Dataset}
-
-
-
-\subsection{c. Configuración de la GCN} 
-
-
-
-\subsection*{d. Descripción del algoritmo e implementación en Python}
-
-
-
-\subsection*{e. Visualización y Análisis de Resultados}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\linewidth]{Images/lossesGCN.png}
+    \caption{Evolución de la pérdida durante el entrenamiento del modelo y accuracy final del modelo}
+    \label{fig:lossesGCN}
+\end{figure}
 
 \newpage
+
+
 \section{Conclusión}
+
+A lo largo de esta investigación se abordaron los fundamentos y aplicaciones de las Redes Neuronales de Grafos (GNNs), modelos que se han vuelto cada vez más relevantes debido a su capacidad para manejar datos estructurados, es decir, aquellos donde las relaciones entre elementos tienen un papel importante. Desde el inicio, se planteó explorar estos modelos por su potencial en contextos como redes sociales, sistemas de recomendación o grafos de citaciones académicas y entre otras muchas funcionalidades que se tienen.
+
+Primero, se revisaron conceptos básicos como la definición de grafos, su representación mediante matrices y algunas métricas clave. Esto sirvió como base para comprender cómo se estructura la información en forma de red y cómo esta estructura puede ser utilizada en modelos de aprendizaje automático. Luego, se profundizó en los fundamentos de las redes neuronales tradicionales y en las limitaciones que presentan al trabajar con este tipo de datos, lo que permitió entender por qué surgieron las GNNs como una alternativa más adecuada.
+
+Después, se analizaron algunos de los principales modelos dentro del campo de las GNNs, como las GCN (Redes Convolucionales sobre Grafos), las GAT (Redes de Atención en Grafos) y GraphSAGE. Cada uno con su enfoque particular para actualizar las representaciones de los nodos a partir de sus vecinos, demostrando otros tipos de usos de grafos para entreno.
+
+Además, se incluyó un ejemplo práctico utilizando GCN para clasificación de nodos, lo cual permite aterrizar en los conceptos teóricos en un caso concreto. Este ejemplo mostró cómo una red neuronal puede aprender representaciones útiles al combinar información local (de cada nodo) y global (de sus conexiones), lo cual sería difícil de lograr con modelos tradicionales.
+
+En conclusión, las GNNs representan una evolución significativa en el campo del aprendizaje automático, ya que permiten trabajar con estructuras complejas de datos de forma efectiva. Más allá de lo técnico, el estudio también deja claro que este tipo de modelos abre puertas a nuevas soluciones en áreas como la inteligencia artificial aplicada, el análisis de redes, la biología computacional, la ciencia de datos y más. A medida que estas técnicas sigan desarrollándose y mejorando su eficiencia, su impacto en la investigación y la industria continuará creciendo.
+
+
+
 
 \newpage
 \section{Referencias}
@@ -856,7 +1106,7 @@ y = \text{ReLU}\left(
 \subsubsection{Glosario de Términos}
 \begin{description}
     \item[\textbf{Algoritmo de Optimización}] Método matemático utilizado para minimizar o maximizar una función objetivo, comúnmente la función de pérdida en machine learning.
-    
+
     \item[\textbf{Batch}] Subconjunto de datos de entrenamiento que se procesa simultáneamente durante una iteración del algoritmo de entrenamiento.
     
     \item[\textbf{Cross-validation (Validación Cruzada)}] Técnica estadística para evaluar la capacidad de generalización de un modelo dividiendo los datos en múltiples particiones.
@@ -877,7 +1127,7 @@ y = \text{ReLU}\left(
     
     \item[\textbf{Underfitting (Subajuste)}] Situación donde el modelo es demasiado simple para capturar la estructura subyacente de los datos.
 \end{description}
-\subsection{Funciones de Activación Adicionales}
+\subsubsection{Funciones de Activación Adicionales}
 
 Además de las funciones mencionadas en el documento principal, existen otras funciones de activación relevantes:
 
@@ -890,5 +1140,139 @@ Además de las funciones mencionadas en el documento principal, existen otras fu
     
     \item \textbf{Softmax}: Utilizada en la capa de salida para problemas de clasificación multiclase: $f(x_i) = \frac{e^{x_i}}{\sum_{j=1}^{K} e^{x_j}}$
 \end{itemize}
+
+\subsection{Anexo B. Conceptos complementarios sobre GNNs}
+
+\subsubsection{Fórmula general de una capa GNN}
+Una operación de propagación típica en una GNN sigue el siguiente esquema general:
+
+\[
+h_i^{(k)} = \sigma \left( \sum_{j \in \mathcal{N}(i)} f\left(h_i^{(k-1)}, h_j^{(k-1)}, e_{ij}\right) \right)
+\]
+
+Donde:
+\begin{itemize}
+    \item $h_i^{(k)}$: representación del nodo $i$ en la capa $k$
+    \item $\mathcal{N}(i)$: conjunto de vecinos del nodo $i$
+    \item $e_{ij}$: atributo de la arista (si aplica)
+    \item $f(\cdot)$: función de agregación o combinación (suma, media, atención, etc.)
+    \item $\sigma(\cdot)$: función de activación no lineal (ReLU, tanh, etc.)
+\end{itemize}
+
+\subsubsection{Ejemplo numérico de propagación en GCN}
+Suponga un grafo de 3 nodos con la siguiente matriz de adyacencia con self-loops:
+
+\[
+\tilde{A} = 
+\begin{pmatrix}
+1 & 1 & 0 \\
+1 & 1 & 1 \\
+0 & 1 & 1
+\end{pmatrix}, \quad
+X = 
+\begin{pmatrix}
+1 & 0 \\
+0 & 1 \\
+1 & 1
+\end{pmatrix}
+\]
+
+Con una matriz de pesos $W = 
+\begin{pmatrix}
+1 & -1 \\
+1 & 1
+\end{pmatrix}$ y función de activación $\sigma = \text{ReLU}$, el primer paso de propagación sería:
+
+\[
+H^{(1)} = \sigma \left( \tilde{A} \cdot X \cdot W \right)
+\]
+
+\[
+X \cdot W = 
+\begin{pmatrix}
+1 & -1 \\
+1 & 1 \\
+2 & 0
+\end{pmatrix}, \quad
+H^{(1)} = \sigma \left(
+\begin{pmatrix}
+1 & 1 & 0 \\
+1 & 1 & 1 \\
+0 & 1 & 1
+\end{pmatrix}
+\cdot 
+\begin{pmatrix}
+1 & -1 \\
+1 & 1 \\
+2 & 0
+\end{pmatrix}
+\right)
+\]
+
+\[
+H^{(1)} = \sigma \left(
+\begin{pmatrix}
+2 & 0 \\
+4 & 0 \\
+3 & 1
+\end{pmatrix}
+\right)
+=
+\begin{pmatrix}
+2 & 0 \\
+4 & 0 \\
+3 & 1
+\end{pmatrix}
+\]
+
+\subsection{Anexo C. Aspectos Complementarios sobre el Caso de Estudio GCN}
+
+\vspace{10pt}
+
+\subsubsection{Limitaciones Técnicas y Soluciones}
+
+Las GCNs tradicionales presentan algunas limitaciones que han motivado el desarrollo de variantes:
+
+\begin{itemize}
+    \item \textbf{Sobreajuste en grafos pequeños:} cuando los datos son escasos, una GCN puede memorizar etiquetas de nodos específicos.
+    \item \textbf{Sobre-suavizado (\textit{over-smoothing}):} con muchas capas, las representaciones de los nodos pueden volverse indistinguibles, perdiendo la capacidad de diferenciación.
+    \item \textbf{Incapacidad para nodos nuevos:} los modelos transductivos como el original de Kipf y Welling no generalizan automáticamente a nuevos nodos que no estuvieron presentes durante el entrenamiento.
+\end{itemize}
+
+\textbf{Soluciones:}
+\begin{itemize}
+    \item Regularización y técnicas de dropout ayudan a mitigar el sobreajuste.
+    \item Usar redes poco profundas (2-3 capas) reduce el sobre-suavizado.
+    \item Modelos inductivos como GraphSAGE permiten la generalización a nuevos nodos.
+\end{itemize}
+
+\subsubsection{Entornos y Herramientas de Implementación}
+
+Las GCN pueden implementarse con diversas bibliotecas modernas de deep learning:
+
+\begin{itemize}
+    \item \textbf{PyTorch Geometric (PyG):} framework sobre PyTorch, ampliamente usado para construir modelos GNN.
+    \item \textbf{Deep Graph Library (DGL):} biblioteca flexible que permite trabajar con grafos en PyTorch o TensorFlow.
+    \item \textbf{Spektral:} orientado a TensorFlow/Keras, adecuado para prototipos rápidos.
+\end{itemize}
+
+Además, conjuntos de datos clásicos como Cora, Citeseer y Pubmed son útiles para realizar experimentos reproducibles. Estos grafos tienen nodos con características textuales y etiquetas de clase.
+
+\subsubsection{Aplicaciones Avanzadas y Futuras Direcciones}
+
+Las GCNs han superado el ámbito de redes sociales y se aplican en:
+
+\begin{itemize}
+    \item \textbf{Biología:} predicción de interacciones proteína-proteína, estructuras de moléculas y propiedades químicas.
+    \item \textbf{Procesamiento de lenguaje natural:} modelado de dependencias gramaticales o relaciones semánticas entre entidades en textos.
+    \item \textbf{Visión por computador:} análisis de escenas, relaciones espaciales entre objetos y reconstrucción 3D.
+\end{itemize}
+
+\textbf{Tendencias actuales:} atención gráfica (GATs), GNNs dinámicas para grafos cambiantes en el tiempo, y el uso de GNNs en sistemas multi-agente o simulaciones físicas.
+
+\vspace{10pt}
+\noindent En conclusión, las GCN representan una extensión del aprendizaje profundo que permite operar sobre datos no euclidianos, capturando relaciones y patrones complejos que no son accesibles para modelos tradicionales. Su evolución continúa integrando conceptos de atención, memoria y adaptación a grafos dinámicos o heterogéneos.
+
+
 \end{document}
 
